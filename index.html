@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TUCIC — Portal dos Membros</title>
+<title>TUCIC — Portal dos Médiuns</title>
 <meta name="robots" content="noindex, nofollow">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Inter:wght@400;500;600;700;900&display=swap');
@@ -141,7 +141,6 @@ select.finput{cursor:pointer;}
 .cf-hom{border-color:#DDD6FE;color:#7C3AED;}.cf-hom.on{background:#EDE9FE;}
 .cf-curso{border-color:#BBF7D0;color:#059669;}.cf-curso.on{background:#D1FAE5;}
 .cf-firmeza{border-color:#FDE68A;color:#D97706;}.cf-firmeza.on{background:#FEF3C7;}
-.cf-apometria{border-color:#FED7D7;color:#B91C1C;}.cf-apometria.on{background:#FED7D7;}
 .cf-outros{border-color:var(--borda);color:var(--muted);}.cf-outros.on{background:var(--surface2);}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;}
 .cal-day-name{text-align:center;font-size:11px;font-weight:700;color:var(--muted);padding:6px 0;}
@@ -154,7 +153,7 @@ select.finput{cursor:pointer;}
 .cal-event{font-size:9px;font-weight:600;padding:2px 5px;border-radius:4px;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .ev-gira{background:#DBEAFE;color:#1E40AF;}.ev-hom{background:#EDE9FE;color:#6D28D9;}
 .ev-curso{background:#D1FAE5;color:#065F46;}.ev-firmeza{background:#FEF3C7;color:#92400E;}
-.ev-apometria{background:#FED7D7;color:#B91C1C;}.ev-outros{background:var(--surface2);color:var(--muted);}
+.ev-outros{background:var(--surface2);color:var(--muted);}
 .cal-more{font-size:9px;color:var(--muted);font-weight:600;}
 /* MODAL */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:999;display:none;align-items:center;justify-content:center;padding:20px;}
@@ -822,7 +821,6 @@ select.finput{cursor:pointer;}
             <button class="cf-btn cf-hom" onclick="calFiltro('hom',this)">Homenagens</button>
             <button class="cf-btn cf-curso" onclick="calFiltro('curso',this)">Cursos</button>
             <button class="cf-btn cf-firmeza" onclick="calFiltro('firmeza',this)">Firmezas</button>
-            <button class="cf-btn cf-apometria" onclick="calFiltro('apometria',this)">Apometria</button>
             <button class="cf-btn cf-outros" onclick="calFiltro('outros',this)">Outros</button>
           </div>
         </div>
@@ -843,11 +841,6 @@ select.finput{cursor:pointer;}
         <button class="tab" onclick="tab('fi','g4',this)">Grupo 4</button>
         <button class="tab" onclick="tab('fi','g5',this)">Grupo 5</button>
         <button class="tab" onclick="tab('fi','g6',this)">Grupo 6</button>
-      </div>
-      <div class="av green" style="margin-bottom:16px;">
-        <div class="avb">Cole a lista de datas do PDF (formato dd/mm, grupo) e clique em "Importar datas".</div>
-        <textarea id="firmezas-input" style="width:100%;min-height:80px;margin-top:8px;padding:10px;border:1px solid var(--borda);border-radius:8px;"></textarea>
-        <button class="btn-sm btn-primary" style="margin-top:8px;" onclick="importFirmezas()">Importar datas</button>
       </div>
       <div id="fi-todos" class="tc active"></div>
       <div id="fi-g1" class="tc"></div><div id="fi-g2" class="tc"></div><div id="fi-g3" class="tc"></div>
@@ -1099,24 +1092,12 @@ select.finput{cursor:pointer;}
         <h4>➕ Adicionar Evento</h4>
         <div class="form-row">
           <div class="form-group"><label>Data</label><input type="date" id="ev-data" class="finput"></div>
-          <div class="form-group"><label>Tipo</label><select id="ev-tipo" class="finput"><option value="gira">🌀 Gira</option><option value="hom">✨ Homenagem</option><option value="curso">📚 Curso</option><option value="firmeza">🕯️ Firmeza</option><option value="apometria">🔮 Apometria</option><option value="outros">📌 Outros</option></select></div>
+          <div class="form-group"><label>Tipo</label><select id="ev-tipo" class="finput"><option value="gira">🌀 Gira</option><option value="hom">✨ Homenagem</option><option value="curso">📚 Curso</option><option value="firmeza">🕯️ Firmeza</option><option value="outros">📌 Outros</option></select></div>
         </div>
         <div class="form-group" style="margin-bottom:10px;"><label>Nome do Evento</label><input type="text" id="ev-titulo" class="finput" placeholder="Ex: Gira de Pretos Velhos..."></div>
         <div class="form-group" style="margin-bottom:12px;"><label>Detalhes (opcional)</label><textarea id="ev-det" class="finput" rows="2" placeholder="Informações adicionais..."></textarea></div>
         <button class="btn-add-ev" onclick="addEvento()">Adicionar ao Calendário</button>
         <span id="ev-feedback" style="font-size:12px;color:var(--success);margin-left:10px;display:none;font-weight:700;">✓ Evento adicionado!</span>
-      </div>
-      <div class="quick-add" style="margin-top:16px;">
-        <h4>📄 Importar Eventos do PDF</h4>
-        <div class="form-group" style="margin-bottom:12px;"><label>Conteúdo da coluna "DATA DA GIRA"</label><textarea id="cal-import-input" class="finput" rows="8" placeholder="Cole aqui o conteúdo do PDF. Exemplo:
-05/02, Gira de Desenvolvimento
-12/02, Homenagem Oxóssi
-19/02, Curso de Ervas
-26/02, Apometria
-
-Para sextas-feiras (GIRA): apenas o nome do guia."></textarea></div>
-        <button class="btn-add-ev" onclick="importCalendario()">Importar Eventos</button>
-        <span id="cal-import-feedback" style="font-size:12px;color:var(--success);margin-left:10px;display:none;font-weight:700;">✓ Eventos importados!</span>
       </div>
       <div style="font-size:12px;font-weight:700;color:var(--muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px;">Eventos adicionados por você</div>
       <div id="custom-events-list"><div style="color:var(--muted2);font-size:13px;padding:12px 0;">Nenhum evento adicionado ainda.</div></div>
@@ -1489,8 +1470,8 @@ var ORIXAS=[{n:'Oxalá',s:'Êbaba · Êpa Baba',cor:'#94A3B8',sig:'O senhor real
 var GIRAS_D=[{num:'1ª',n:"Povo d'Água — Marinheiros",tipo:'Descarrego',desc:"Entidades muito elevadas. Chegam girando, limpando com águas e vento. Não fazem consultas."},{num:'2ª',n:'Pombagira',tipo:'Consultas',desc:'Consultas e trabalhos de magia — vida sentimental, emprego, finanças.'},{num:'3ª',n:'Xangô — Ibejada',tipo:'Descarrego + Consultas',desc:'Xangô: juízes espirituais, trabalham no carma. Ibejada: para casos de doença, família e gravidez.'},{num:'4ª',n:'Boiadeiros',tipo:'Consultas',desc:'Evolução material e espiritual. Magias com palheiro, cachaça, cerveja e velas.'},{num:'5ª',n:'Ciganos',tipo:'Consultas',desc:'Sorte, dinheiro, prosperidade e amor. Cartas, cristais, incensos, fumo e flores.'},{num:'6ª',n:'Exu',tipo:'Consultas',desc:'Defesa dos médiuns e do terreiro. Velas pretas e vermelhas, charutos, bebidas fortes.'},{num:'7ª',n:'Obaluaê/Omulu — Baianos',tipo:'Descarrego + Consultas',desc:'Omulu: energia da terra/água para saúde. Baianos: atendimentos de consulta.'},{num:'8ª',n:'Oxóssi',tipo:'Descarrego + Consultas',desc:'Charutos para limpeza, Curiado. Ajudam na vida material.'},{num:'9ª',n:'Ogum — Malandros',tipo:'Descarrego',desc:'Braço forte de Oxalá. Não dão consultas. Charuto, cerveja, espada ou ervas.'},{num:'10ª',n:'Pretos Velhos',tipo:'Consultas',desc:'Psicólogos dos aflitos. Cachimbo para limpeza, rezas, patuás.'}];
 var LINHAS_D=[{n:"Linha das Águas",d:"Caboclas de Iemanjá, Oxum, Obá, Iansã e Nanã",c:'#0EA5E9'},{n:"Linha de Ibejada",d:"Erês — Crianças de Ibeji",c:'#EC4899'},{n:"Linha das Almas",d:"Obaluaê/Omulu, Pretos Velhos",c:'#475569'},{n:"Linha de Ogum",d:"Caboclos ou Falangeiros de Ogum",c:'#DC2626'},{n:"Linha de Oxossi",d:"Caboclos de Oxóssi",c:'#15803D'},{n:"Linha de Xangô",d:"Caboclos de Xangô",c:'#92400E'},{n:"Linha de Ciganos",d:"Espíritos ciganos",c:'#D97706'},{n:"Linha do Povo do Oriente",d:"Espíritos elevados de cura",c:'#EA580C'},{n:"Linha de Boiadeiros",d:"Espíritos da boiada e do campo",c:'#78350F'},{n:"Linha de Marinheiros",d:"Povo d'água",c:'#1D4ED8'},{n:"Linha de Malandros",d:"Coordenada por Zé Pelintra",c:'#9F1239'},{n:"Linha da Esquerda",d:"Exu, Pomba-Gira e Mirim",c:'#334155'},{n:"Linha de Baianos",d:"Baianos e suas correntes",c:'#B45309'}];
 var SETE_D=[{n:'Oriente',o:'Oxalá',v:'FÉ',c:'#EA580C'},{n:'Ogum',o:'Ogum',v:'LEI · ORDENAÇÃO',c:'#DC2626'},{n:'Xangô',o:'Xangô',v:'JUSTIÇA · JULGAMENTO · RAZÃO',c:'#92400E'},{n:'Oxóssi',o:'Oxóssi',v:'DOUTRINA · CONHECIMENTO',c:'#15803D'},{n:"Povo d'Água",o:'Iemanjá, Oxum, Iansã, Nanã',v:'AMOR · GERAÇÃO',c:'#0EA5E9'},{n:'Almas',o:'Obaluaê/Omulú',v:'EVOLUÇÃO · HUMILDADE',c:'#7C3AED'},{n:'Ibejada/Erês',o:'Ibeji',v:'INOCÊNCIA · ALEGRIA · SAÚDE',c:'#EC4899'}];
-var GRUPOS={1:['Lorena','Evandro','Bárbara','Yann','Mayara','Renata','Aline','Fernanda Boanova'],2:['Luciano','Ismael','Juliana','Daiane','Geysa','Karen','Terezinha'],3:['Augusto','Alda','Jéssica','Douglas','Dionathan','Maylla','Lívia'],4:['F. Trovão','Emanoelle','Vitória','Ana Paula S.','Isa','Dalvani','Thiago'],5:['Paula C.','Sthefany','Tais Helena','Mateus','Aurora','Marcelo','J.Ricardo'],6:['Caio','Henrique','Tais Reis','Giovana','Daniela','Monica','Danny']};
-var EVENTOS_BASE=[{d:'2026-01-02',t:'RECESSO',tp:'outros'},{d:'2026-01-09',t:'INICIO DE RECOLHIDA 7 LINHAS & OBRIG. SEG. OGÃ E PORTEIRO',tp:'outros'},{d:'2026-01-16',t:'SAÍDA DE PAIS PEQUENOS 20h',tp:'outros'},{d:'2026-01-21',t:'GIRA DE DE DESENVOLVIMENTO E AMACI DE INICIO DE ANO',tp:'gira'},{d:'2026-01-23',t:'POVO D´ÁGUA & MARINHEIRO',tp:'gira'},{d:'2026-01-24',t:'HOMENAGEM OXÓSSI',tp:'hom'},{d:'2026-01-28',t:'GIRA DE DE DESENVOLVIMENTO',tp:'gira'},{d:'2026-01-30',t:'OGUM & MALANDROS',tp:'gira'},{d:'2026-01-31',t:'MUTIRÃO GERAL',tp:'outros'},{d:'2026-02-02',t:'APOMETRIA',tp:'outros'},{d:'2026-02-03',t:'TEOLOGIA 2026 INÍCIO - AULA 01',tp:'curso'},{d:'2026-02-04',t:'GIRA DE DE DESENVOLVIMENTO',tp:'gira'},{d:'2026-02-06',t:'PRETOS VELHOS',tp:'gira'},{d:'2026-02-07',t:'HOMENAGEM IEMANJÁ & MARINHEIROS (Na Praia)',tp:'hom'},{d:'2026-02-09',t:'GIRA DE CURA',tp:'gira'},{d:'2026-02-11',t:'GIRA DE DE DESENVOLVIMENTO',tp:'gira'},{d:'2026-02-13',t:'POMBAGIRA',tp:'gira'},{d:'2026-02-14',t:'CURSO INTRODUÇÃO AO CEMITÉRIO (MP PAULA, MP GEYSA E',tp:'curso'},{d:'2026-02-16',t:'APOMETRIA',tp:'outros'},{d:'2026-02-18',t:'GIRA DE DE DESENVOLVIMENTO',tp:'gira'},{d:'2026-02-20',t:'XANGÔ & IBEJADA',tp:'gira'},{d:'2026-02-21',t:'DATA RESERVADA PARA CURSOS OU EVENTOS',tp:'outros'},{d:'2026-02-23',t:'GIRA DE CURA',tp:'gira'},{d:'2026-02-24',t:'TEOLOGIA 2026 - AULA 02',tp:'curso'},{d:'2026-02-25',t:'GIRA DE DE DESENVOLVIMENTO & BATISMO MÉDIUNS NOVOS',tp:'gira'},{d:'2026-02-27',t:'BOIADEIRO',tp:'gira'},{d:'2026-02-28',t:'CURSO DE ERVAS NA UMBANDA (MP PAULA, MP TEREZINHA',tp:'curso'},{d:'2026-03-02',t:'GIRA DE CURA',tp:'gira'},{d:'2026-03-04',t:'HOMENAGEM POVO ORIENTE & DESENVOLVIMENTO',tp:'hom'},{d:'2026-03-06',t:'GIRA CIGANOS',tp:'gira'},{d:'2026-03-07',t:'Curso de baralho cigano para iniciantes Masterclasss (PAI CAI',tp:'curso'},{d:'2026-03-09',t:'APOMETRIA',tp:'outros'},{d:'2026-03-10',t:'TEOLOGIA 2026 - AULA 03.01',tp:'curso'},{d:'2026-03-11',t:'GIRA DE DE DESENVOLVIMENTO',tp:'gira'},{d:'2026-03-13',t:'EXU',tp:'gira'},{d:'2026-03-14',t:'DATA RESERVADA PARA CURSOS OU EVENTOS',tp:'outros'},{d:'2026-03-16',t:'GIRA DE CURA',tp:'gira'},{d:'2026-03-18',t:'GIRA DE DE DESENVOLVIMENTO',tp:'gira'},{d:'2026-03-20',t:'OBALUAÊ/OMULU & BAIANOS',tp:'gira'},{d:'2026-03-21',t:'GIRA PAI CAIO - PRETO VELHO',tp:'gira'},{d:'2026-03-23',t:'APOMETRIA',tp:'outros'},{d:'2026-03-24',t:'TEOLOGIA 2026 - AULA 03.02',tp:'curso'},{d:'2026-03-25',t:'GIRA DE DE DESENVOLVIMENTO',tp:'gira'},{d:'2026-03-27',t:'OXÓSSI',tp:'gira'},{d:'2026-03-28',t:'CURSO 7 RAIOS (MÃE LORENA e MP VITÓRIA) 08:00 às 20:00',tp:'curso'},{d:'2026-03-30',t:'GIRA DE CURA',tp:'gira'},{d:'2026-03-31',t:'TEOLOGIA 2026 - AULA 04',tp:'curso'},{d:'2026-04-01',t:'GIRA DE DE DESENVOLVIMENTO',tp:'gira'},{d:'2026-04-03',t:'PRETOS VELHOS',tp:'gira'},{d:'2026-04-04',t:'GIRA PAI CAIO - POVO D´ÁGUA E MARINHEIROS',tp:'gira'}];
+var GRUPOS={1:['Lorena','Evandro','Bárbara','Yann','Mayara','Renata','Monica'],2:['Luciano','Ismael','Maylla','Lívia','Geysa','Karen','Dionathan'],3:['Augusto F.','Alda','Jéssica','Douglas','Terezinha','Juliana','Daiane'],4:['F. Trovão','Emanoelle','Vitória','Ana Paula S.','Isa','Dalvani','Thiago'],5:['Paula C.','Sthefany','Tais Helena','Mateus','Aurora','Marcelo','J.Ricardo'],6:['Caio','Henrique','Tais Reis','Fernanda Boanova','Daniela','Aline','Danny']};
+var EVENTOS_BASE=[{d:'2026-01-09',t:'Início Recolhida 7 Linhas',tp:'outros'},{d:'2026-01-16',t:'Saída de Pais Pequenos 20h',tp:'outros'},{d:'2026-01-21',t:'Gira de Desenvolvimento & Amaci',tp:'gira'},{d:'2026-01-23',t:"Povo d'Água & Marinheiro",tp:'gira'},{d:'2026-01-24',t:'Homenagem Oxóssi',tp:'hom'},{d:'2026-01-28',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-01-30',t:'Ogum & Malandros',tp:'gira'},{d:'2026-01-31',t:'Mutirão Geral',tp:'outros'},{d:'2026-02-02',t:'Apometria',tp:'outros'},{d:'2026-02-03',t:'Teologia 2026 — Aula 01',tp:'curso'},{d:'2026-02-04',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-02-06',t:'Pretos Velhos',tp:'gira'},{d:'2026-02-07',t:'Homenagem Iemanjá & Marinheiros (Praia)',tp:'hom'},{d:'2026-02-09',t:'Gira de Cura',tp:'gira'},{d:'2026-02-11',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-02-13',t:'Pombagira',tp:'gira'},{d:'2026-02-16',t:'Apometria',tp:'outros'},{d:'2026-02-18',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-02-20',t:'Xangô & Ibejada',tp:'gira'},{d:'2026-02-23',t:'Gira de Cura',tp:'gira'},{d:'2026-02-24',t:'Teologia 2026 — Aula 02',tp:'curso'},{d:'2026-02-25',t:'Gira de Desenvolvimento & Batismo',tp:'gira'},{d:'2026-02-27',t:'Boiadeiro',tp:'gira'},{d:'2026-02-28',t:'Curso de Ervas na Umbanda',tp:'curso'},{d:'2026-03-02',t:'Gira de Cura',tp:'gira'},{d:'2026-03-04',t:'Homenagem Povo Oriente & Desenvolvimento',tp:'hom'},{d:'2026-03-06',t:'Gira Ciganos',tp:'gira'},{d:'2026-03-07',t:'Curso Baralho Cigano — Masterclass',tp:'curso'},{d:'2026-03-09',t:'Apometria',tp:'outros'},{d:'2026-03-10',t:'Teologia 2026 — Aula 03',tp:'curso'},{d:'2026-03-11',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-03-13',t:'Exu',tp:'gira'},{d:'2026-03-16',t:'Gira de Cura',tp:'gira'},{d:'2026-03-18',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-03-20',t:'Obaluaê/Omulu & Baianos',tp:'gira'},{d:'2026-03-21',t:'Gira Pai Caio — Preto Velho',tp:'gira'},{d:'2026-03-23',t:'Apometria',tp:'outros'},{d:'2026-03-25',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-03-27',t:'Oxóssi',tp:'gira'},{d:'2026-03-28',t:'Curso 7 Raios',tp:'curso'},{d:'2026-03-30',t:'Gira de Cura',tp:'gira'},{d:'2026-03-31',t:'Teologia 2026 — Aula 04',tp:'curso'},{d:'2026-04-01',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-04-03',t:'Pretos Velhos',tp:'gira'},{d:'2026-04-06',t:'Apometria',tp:'outros'},{d:'2026-04-08',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-04-10',t:"Povo d'Água & Marinheiro",tp:'gira'},{d:'2026-04-11',t:'Curso de Defesas Energéticas',tp:'curso'},{d:'2026-04-13',t:'Gira de Cura',tp:'gira'},{d:'2026-04-14',t:'Teologia 2026 — Aula 05',tp:'curso'},{d:'2026-04-15',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-04-17',t:'Xangô & Ibejada',tp:'gira'},{d:'2026-04-20',t:'Apometria',tp:'outros'},{d:'2026-04-22',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-04-24',t:'Homenagem a Ogum & Gira de Malandros',tp:'hom'},{d:'2026-04-27',t:'Gira de Cura',tp:'gira'},{d:'2026-04-28',t:'Teologia 2026 — Aula 06',tp:'curso'},{d:'2026-04-29',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-05-01',t:'Boiadeiro',tp:'gira'},{d:'2026-05-04',t:'Apometria',tp:'outros'},{d:'2026-05-06',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-05-08',t:'Exu',tp:'gira'},{d:'2026-05-11',t:'Gira de Cura',tp:'gira'},{d:'2026-05-12',t:'Teologia 2026 — Aula 07',tp:'curso'},{d:'2026-05-13',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-05-15',t:'Obaluaê/Omulu & Baianos',tp:'gira'},{d:'2026-05-16',t:'Homenagem Pretos Velhos',tp:'hom'},{d:'2026-05-18',t:'Apometria',tp:'outros'},{d:'2026-05-20',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-05-22',t:'Oxóssi',tp:'gira'},{d:'2026-05-25',t:'Gira de Cura',tp:'gira'},{d:'2026-05-26',t:'Teologia 2026 — Aula 08',tp:'curso'},{d:'2026-05-27',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-05-29',t:'Ogum & Malandros',tp:'gira'},{d:'2026-05-30',t:'Homenagem Ciganos',tp:'hom'},{d:'2026-06-01',t:'Apometria',tp:'outros'},{d:'2026-06-03',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-06-05',t:'Pretos Velhos',tp:'gira'},{d:'2026-06-08',t:'Gira de Cura',tp:'gira'},{d:'2026-06-09',t:'Teologia 2026 — Aula 09',tp:'curso'},{d:'2026-06-10',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-06-12',t:"Povo d'Água & Marinheiro",tp:'gira'},{d:'2026-06-13',t:'Homenagem Exu',tp:'hom'},{d:'2026-06-15',t:'Apometria',tp:'outros'},{d:'2026-06-17',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-06-19',t:'Ciganos',tp:'gira'},{d:'2026-06-22',t:'Gira de Cura',tp:'gira'},{d:'2026-06-23',t:'Teologia 2026 — Aula 10',tp:'curso'},{d:'2026-06-24',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-06-26',t:'Homenagem a Xangô & Gira de Ibejada',tp:'hom'},{d:'2026-06-29',t:'Apometria',tp:'outros'},{d:'2026-07-01',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-07-03',t:'Pombagira',tp:'gira'},{d:'2026-07-04',t:'Homenagem Malandro Miguel',tp:'hom'},{d:'2026-07-06',t:'Gira de Cura',tp:'gira'},{d:'2026-07-07',t:'Teologia 2026 — Aula 11',tp:'curso'},{d:'2026-07-08',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-07-10',t:'Boiadeiro',tp:'gira'},{d:'2026-07-13',t:'Apometria',tp:'outros'},{d:'2026-07-15',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-07-17',t:'Oxóssi',tp:'gira'},{d:'2026-07-20',t:'Gira de Cura',tp:'gira'},{d:'2026-07-21',t:'Teologia 2026 — Aula 12',tp:'curso'},{d:'2026-07-22',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-07-24',t:'Homenagem a Nanã & Gira de Marinheiro',tp:'hom'},{d:'2026-07-27',t:'Apometria',tp:'outros'},{d:'2026-07-29',t:'Gira de Desenvolvimento & Batismo',tp:'gira'},{d:'2026-07-31',t:'Obaluaê/Omulu & Baianos',tp:'gira'},{d:'2026-08-01',t:'Batismo Médiuns Novos',tp:'outros'},{d:'2026-08-03',t:'Gira de Cura',tp:'gira'},{d:'2026-08-04',t:'Teologia 2026 — Aula 13',tp:'curso'},{d:'2026-08-05',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-08-07',t:'Exu',tp:'gira'},{d:'2026-08-10',t:'Apometria',tp:'outros'},{d:'2026-08-12',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-08-14',t:'Ogum & Malandros',tp:'gira'},{d:'2026-08-15',t:'Homenagem Pombagira',tp:'hom'},{d:'2026-08-17',t:'Gira de Cura',tp:'gira'},{d:'2026-08-18',t:'Teologia 2026 — Aula 14',tp:'curso'},{d:'2026-08-19',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-08-21',t:'Pretos Velhos',tp:'gira'},{d:'2026-08-24',t:'Apometria',tp:'outros'},{d:'2026-08-26',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-08-28',t:'Homenagem Boiadeiro',tp:'hom'},{d:'2026-08-31',t:'Gira de Cura',tp:'gira'},{d:'2026-09-01',t:'Teologia 2026 — Aula 15',tp:'curso'},{d:'2026-09-02',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-09-04',t:"Povo d'Água & Marinheiro",tp:'gira'},{d:'2026-09-07',t:'Apometria',tp:'outros'},{d:'2026-09-09',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-09-11',t:'Pombagira',tp:'gira'},{d:'2026-09-14',t:'Gira de Cura',tp:'gira'},{d:'2026-09-15',t:'Teologia 2026 — Aula 16',tp:'curso'},{d:'2026-09-16',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-09-18',t:'Ciganos',tp:'gira'},{d:'2026-09-21',t:'Apometria',tp:'outros'},{d:'2026-09-23',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-09-25',t:'Homenagem Ibejada — 7 Linhas',tp:'hom'},{d:'2026-09-30',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-10-02',t:'Oxóssi — Saída 7 Linhas',tp:'gira'},{d:'2026-10-03',t:'Curso de Ervas na Umbanda',tp:'curso'},{d:'2026-10-05',t:'Apometria',tp:'outros'},{d:'2026-10-06',t:'Teologia 2026 — Aula 17',tp:'curso'},{d:'2026-10-07',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-10-09',t:'Homenagem à Oxum',tp:'hom'},{d:'2026-10-10',t:'Amaci na Cachoeira',tp:'outros'},{d:'2026-10-12',t:'Gira de Cura',tp:'gira'},{d:'2026-10-14',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-10-16',t:'Exu',tp:'gira'},{d:'2026-10-19',t:'Apometria',tp:'outros'},{d:'2026-10-20',t:'Teologia 2026 — Aula 18',tp:'curso'},{d:'2026-10-21',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-10-23',t:'Oxóssi',tp:'gira'},{d:'2026-10-26',t:'Gira de Cura',tp:'gira'},{d:'2026-10-28',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-10-30',t:'Ogum & Malandros',tp:'gira'},{d:'2026-11-02',t:'Apometria',tp:'outros'},{d:'2026-11-03',t:'Teologia 2026 — Aula 19',tp:'curso'},{d:'2026-11-04',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-11-06',t:'Homenagem Omulu/Obaluaê & Baianos',tp:'hom'},{d:'2026-11-09',t:'Gira de Cura',tp:'gira'},{d:'2026-11-11',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-11-13',t:'Pretos Velhos',tp:'gira'},{d:'2026-11-16',t:'Apometria',tp:'outros'},{d:'2026-11-17',t:'Teologia 2026 — Aula 20',tp:'curso'},{d:'2026-11-18',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-11-20',t:"Povo d'Água & Marinheiro",tp:'gira'},{d:'2026-11-23',t:'Gira de Cura',tp:'gira'},{d:'2026-11-25',t:'Gira de Desenvolvimento & Batismo',tp:'gira'},{d:'2026-11-27',t:'Pombagira',tp:'gira'},{d:'2026-11-30',t:'Apometria',tp:'outros'},{d:'2026-12-01',t:'Teologia 2026 — Aula 21 (Última)',tp:'curso'},{d:'2026-12-02',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-12-04',t:'Homenagem Iansã/Obá & Gira de Pombagira',tp:'hom'},{d:'2026-12-09',t:'Gira de Desenvolvimento',tp:'gira'},{d:'2026-12-11',t:'Exu',tp:'gira'},{d:'2026-12-12',t:'Mutirão Geral',tp:'outros'}];
 var FIRMEZAS=[{d:'2026-02-05',g:4},{d:'2026-02-12',g:5},{d:'2026-02-19',g:6},{d:'2026-02-26',g:1},{d:'2026-03-05',g:2},{d:'2026-03-12',g:3},{d:'2026-03-19',g:4},{d:'2026-03-26',g:5},{d:'2026-04-02',g:6},{d:'2026-04-09',g:1},{d:'2026-04-16',g:2},{d:'2026-04-23',g:3},{d:'2026-04-30',g:4},{d:'2026-05-07',g:5},{d:'2026-05-14',g:6},{d:'2026-05-21',g:1},{d:'2026-05-28',g:2},{d:'2026-06-04',g:3},{d:'2026-06-11',g:4},{d:'2026-06-18',g:5},{d:'2026-06-25',g:6},{d:'2026-07-02',g:1},{d:'2026-07-09',g:2},{d:'2026-07-16',g:3},{d:'2026-07-23',g:4},{d:'2026-07-30',g:5},{d:'2026-08-06',g:6},{d:'2026-08-13',g:1},{d:'2026-08-20',g:2},{d:'2026-08-27',g:3},{d:'2026-09-03',g:4},{d:'2026-09-10',g:5},{d:'2026-09-17',g:6},{d:'2026-09-24',g:1},{d:'2026-10-01',g:2},{d:'2026-10-08',g:3},{d:'2026-10-15',g:4},{d:'2026-10-22',g:5},{d:'2026-10-29',g:6},{d:'2026-11-05',g:1},{d:'2026-11-12',g:2},{d:'2026-11-19',g:3},{d:'2026-11-26',g:4},{d:'2026-12-03',g:5},{d:'2026-12-10',g:6}];
 var FUNCOES=[{d:'2026-01-21',gira:'Gira de Desenvolvimento & Amaci',abertura:'Ana Paula',def:'Mateus',auxDef:'Mãe P. Vitória'},{d:'2026-01-23',gira:"Povo d'Água & Marinheiro",abertura:'Ana Paula',def:'Mateus',auxDef:'Mãe P. Vitória'},{d:'2026-01-30',gira:'Ogum & Malandros',abertura:'Mateus',def:'Mãe P. Vitória',auxDef:'Maylla'},{d:'2026-02-06',gira:'Pretos Velhos',abertura:'Mãe P. Vitória',def:'Maylla',auxDef:'Emanoelle'},{d:'2026-02-13',gira:'Pombagira',abertura:'Maylla',def:'Emanoelle',auxDef:'Mãe P. Paula'},{d:'2026-02-20',gira:'Xangô & Ibejada',abertura:'Emanoelle',def:'Mãe P. Paula',auxDef:'Fê Boanova'},{d:'2026-02-27',gira:'Boiadeiro',abertura:'Mãe P. Paula',def:'Fê Boanova',auxDef:'Monica'},{d:'2026-03-02',gira:'Gira de Cura',abertura:'Juliana',def:'Evandro',auxDef:'Karen'},{d:'2026-03-06',gira:'Ciganos',abertura:'Fê Boanova',def:'Monica',auxDef:'Mãe P. Geysa'},{d:'2026-03-13',gira:'Exu',abertura:'Monica',def:'Mãe P. Geysa',auxDef:'Sthefany'},{d:'2026-03-20',gira:'Obaluaê/Omulu & Baianos',abertura:'Mãe P. Geysa',def:'Sthefany',auxDef:'Pai P. Henrique'},{d:'2026-03-27',gira:'Oxóssi',abertura:'Sthefany',def:'Pai P. Henrique',auxDef:'Douglas'},{d:'2026-04-03',gira:'Pretos Velhos',abertura:'Pai P. Henrique',def:'Douglas',auxDef:'Pai P. Luciano'},{d:'2026-04-10',gira:"Povo d'Água & Marinheiro",abertura:'Douglas',def:'Pai P. Luciano',auxDef:'Jéssica'},{d:'2026-04-17',gira:'Xangô & Ibejada',abertura:'Pai P. Luciano',def:'Jéssica',auxDef:'Mateus'},{d:'2026-04-24',gira:'Homenagem Ogum & Malandros',abertura:'Jéssica',def:'Mateus',auxDef:'Mãe P. Terezinha'}];
 
@@ -1694,19 +1675,14 @@ function renderCalendario(){
     if(hoje.getFullYear()===calAtual.ano&&hoje.getMonth()===calAtual.mes&&hoje.getDate()===day)d.classList.add('today');
     d.innerHTML='<div class="cal-day-num">'+day+'</div>';
     var evs=todos.filter(function(e){return e.d===ds;});
-    var evF=calFiltroAtual==='all'?evs:evs.filter(function(e){
-      if(calFiltroAtual==='apometria'){
-        return e.t.toUpperCase().includes('APOMETRIA') || e.tp===calFiltroAtual;
-      }
-      return e.tp===calFiltroAtual;
-    });
+    var evF=calFiltroAtual==='all'?evs:evs.filter(function(e){return e.tp===calFiltroAtual;});
     evF.slice(0,3).forEach(function(ev){var el=document.createElement('div');el.className='cal-event ev-'+ev.tp;el.textContent=ev.t;d.appendChild(el);});
     if(evF.length>3){var mm=document.createElement('div');mm.className='cal-more';mm.textContent='+'+(evF.length-3)+' mais';d.appendChild(mm);}
     if(evF.length>0){d.classList.add('has-ev');(function(evList,label,ds2){d.onclick=function(){
       document.getElementById('modal-ev-titulo').textContent=label;
       document.getElementById('modal-ev-data').textContent=ds2.split('-').reverse().join('/');
       document.getElementById('modal-ev-corpo').innerHTML=evList.map(function(ev){
-        var cores={gira:'#DBEAFE|#1E40AF',hom:'#EDE9FE|#6D28D9',curso:'#D1FAE5|#065F46',firmeza:'#FEF3C7|#92400E',apometria:'#FED7D7|#B91C1C',outros:'#F3F4F6|#6B7280'};
+        var cores={gira:'#DBEAFE|#1E40AF',hom:'#EDE9FE|#6D28D9',curso:'#D1FAE5|#065F46',firmeza:'#FEF3C7|#92400E',outros:'#F3F4F6|#6B7280'};
         var cc=(cores[ev.tp]||'#F3F4F6|#6B7280').split('|');
         var gurl=gcalLink(ev.t,ds2,ev.det||'');
         return '<div style="padding:12px;background:'+cc[0]+';border-radius:8px;margin-bottom:8px;"><div style="font-size:10px;font-weight:700;color:'+cc[1]+';text-transform:uppercase;margin-bottom:4px;">'+ev.tp+'</div><div style="font-size:14px;font-weight:700;color:var(--texto);">'+ev.t+'</div>'+(ev.det?'<div style="font-size:12.5px;color:var(--muted);margin-top:5px;">'+ev.det+'</div>':'')+'<a href="'+gurl+'" target="_blank" class="btn-gcal">📅 Adicionar ao Google Calendar</a></div>';
@@ -1749,59 +1725,6 @@ function renderCustomEvents(){
 }
 function removerEvento(i){eventosCustom.splice(i,1);renderCalendario();renderCustomEvents();}
 
-function importCalendario(){
-  var text=document.getElementById('cal-import-input').value.trim();
-  if(!text){alert('Cole o conteúdo do PDF no campo acima.');return;}
-  var lines=text.split(/\r?\n/).map(function(l){return l.trim();}).filter(function(l){return l.length>0;});
-  var parsed=[], errors=[], currentEvent=null;
-  for(var i=0;i<lines.length;i++){
-    var line=lines[i];
-    if(line.match(/^\d{2}\/\w{3}$/)){ // date line like 02/jan
-      if(currentEvent){parsed.push(currentEvent);}
-      currentEvent={date:line};
-    }else if(line.match(/^(SEGUNDA|TERÇA|QUARTA|QUINTA|SEXTA|SÁBADO|DOMINGO)/i)){ // day of week
-      if(currentEvent)currentEvent.day=line;
-    }else{ // description
-      if(currentEvent){
-        if(currentEvent.desc)currentEvent.desc+=' '+line;
-        else currentEvent.desc=line;
-      }
-    }
-  }
-  if(currentEvent)parsed.push(currentEvent);
-  var eventosParsedados=parsed.map(function(ev){
-    var date=ev.date, desc=ev.desc||'';
-    var m=date.match(/^(\d{2})\/(\w{3})$/);
-    if(!m){errors.push('Data inválida: '+date);return null;}
-    var monthMap={'jan':'01','fev':'02','mar':'03','abr':'04','mai':'05','jun':'06','jul':'07','ago':'08','set':'09','out':'10','nov':'11','dez':'12'};
-    var mm=monthMap[m[2].toLowerCase()];
-    if(!mm){errors.push('Mês inválido: '+m[2]);return null;}
-    var d='2026-'+mm+'-'+m[1];
-    var tp='gira'; // default
-    var titulo=desc;
-    if(desc.toLowerCase().includes('homenagem')) tp='hom';
-    else if(desc.toLowerCase().includes('curso') || desc.toLowerCase().includes('teologia')) tp='curso';
-    else if(desc.toLowerCase().includes('apometria')) tp='apometria';
-    else if(desc.toLowerCase().includes('mutirão') || desc.toLowerCase().includes('recesso') || desc.toLowerCase().includes('batismo')) tp='outros';
-    else if(desc.toLowerCase().includes('gira')) tp='gira';
-    else tp='outros';
-    // For Fridays, if it's just a name or short, assume GIRA
-    if(ev.day && ev.day.toUpperCase().includes('SEXTA') && desc.split(' ').length <= 5 && !desc.toLowerCase().includes('homenagem') && !desc.toLowerCase().includes('curso') && !desc.toLowerCase().includes('apometria') && !desc.toLowerCase().includes('mutirão') && !desc.toLowerCase().includes('recesso')) {
-      titulo = 'Gira — ' + desc;
-      tp = 'gira';
-    }
-    return {d:d,t:titulo,tp:tp};
-  }).filter(function(e){return e!==null;});
-  if(errors.length>0){alert('Erros encontrados:\n'+errors.join('\n'));}
-  if(eventosParsedados.length===0){alert('Nenhum evento válido encontrado.');return;}
-  // Clear existing custom events and add new ones
-  eventosCustom=eventosParsedados;
-  document.getElementById('cal-import-input').value='';
-  renderCalendario();renderCustomEvents();
-  var fb=document.getElementById('cal-import-feedback');fb.style.display='inline';setTimeout(function(){fb.style.display='none';},2500);
-  alert('Eventos importados: '+eventosParsedados.length);
-}
-
 // ===== FIRMEZAS =====
 function buildFirmezas(){
   var todos=document.getElementById('fi-todos');if(!todos)return;
@@ -1814,29 +1737,6 @@ function buildFirmezas(){
   for(var g=1;g<=6;g++){var el=document.getElementById('fi-g'+g);if(!el)continue;var mb=(GRUPOS[g]||[]).map(function(m){return '<span class="membro-tag">'+m+'</span>';}).join('');el.innerHTML='<div class="grupo-membros" style="margin-bottom:14px;">'+mb+'</div>';FIRMEZAS.filter(function(f){return f.g===g;}).forEach(function(f){var p=f.d.split('-');el.innerHTML+='<div class="firmeza-row"><div class="firmeza-date">'+p[2]+'/'+p[1]+'/'+p[0]+'</div></div>';});}
   var gg=document.getElementById('grupos-grid');if(!gg)return;gg.innerHTML='';
   for(var g=1;g<=6;g++){var mb=(GRUPOS[g]||[]).map(function(m){return '<span class="membro-tag">'+m+'</span>';}).join('');gg.innerHTML+='<div class="rc"><div style="font-size:13px;font-weight:700;color:var(--azul);margin-bottom:10px;">Grupo '+g+'</div><div class="grupo-membros">'+mb+'</div></div>';}
-}
-function importFirmezas(){
-  var text=document.getElementById('firmezas-input').value.trim();
-  if(!text){alert('Cole as datas de firmeza no campo acima.');return;}
-  var lines=text.split(/\r?\n/).map(function(l){return l.trim();}).filter(function(l){return l.length>0;});
-  var parsed=[];
-  lines.forEach(function(line){
-    var clean=line.replace(/\s+grupo\s*/i,',').replace(/\s*-\s*/g,',');
-    var parts=clean.split(/[,;]+/).map(function(p){return p.trim();}).filter(function(p){return p.length>0;});
-    if(parts.length<2)return;
-    var date=parts[0];
-    var group=parts[1].replace(/^grupo\s*/i,'');
-    var m=date.match(/^(\d{2})\/(\d{2})$/);
-    if(!m)return;
-    var d='2026-'+m[2]+'-'+m[1];
-    var g=parseInt(group,10);
-    if(isNaN(g)||g<1||g>6)return;
-    parsed.push({d:d,g:g});
-  });
-  if(parsed.length===0){alert('Nenhuma data válida encontrada. Use formato dd/mm, grupo.');return;}
-  FIRMEZAS=parsed;
-  buildFirmezas();
-  alert('Firmezas importadas: '+parsed.length);
 }
 function buildFuncoes(){
   var el=document.getElementById('funcoes-list');if(!el)return;

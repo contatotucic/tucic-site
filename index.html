@@ -475,6 +475,11 @@ select.finput{cursor:pointer;}
       <input class="finput" type="email" id="lemail" name="email" placeholder="seu@email.com" autocomplete="username">
       <label class="flabel">Senha</label>
       <input class="finput" type="password" id="lsenha" name="password" placeholder="••••••••" autocomplete="current-password">
+      <label class="flabel">Verificação de Segurança</label>
+      <div style="display:flex;gap:8px;align-items:center;margin-bottom:12px;">
+        <div id="captcha-question" style="font-size:14px;font-weight:600;color:var(--azul);flex:1;"></div>
+        <input class="finput" type="text" id="captcha-answer" placeholder="Resposta" style="width:80px;margin:0;">
+      </div>
       <button type="submit" class="btn-primary" id="btn-login">Acessar o Portal</button>
       </form>
       <div class="form-switch">Primeiro acesso? <span class="alink" onclick="showView('v-solicitar')">Solicite aqui →</span></div>
@@ -1545,12 +1550,32 @@ function _membrosParaUSERS(lista){
 }
 
 // ===== LOGIN =====
+function generateCaptcha(){
+  var num1 = Math.floor(Math.random() * 10) + 1;
+  var num2 = Math.floor(Math.random() * 10) + 1;
+  var question = num1 + ' + ' + num2 + ' = ?';
+  var answer = num1 + num2;
+  document.getElementById('captcha-question').textContent = question;
+  return answer;
+}
+
 function doLogin(){
   var email=document.getElementById('lemail').value.trim().toLowerCase();
   var senha=document.getElementById('lsenha').value;
+  var captchaAnswer = document.getElementById('captcha-answer').value.trim();
   var err=document.getElementById('err');
   _membrosParaUSERS();
   var u=USERS[email];
+  
+  // Check captcha first
+  var expectedAnswer = parseInt(localStorage.getItem('captcha_answer') || '0');
+  if (captchaAnswer !== expectedAnswer.toString()) {
+    // Store error message and reload page
+    localStorage.setItem('login_error', 'Resposta da verificação de segurança incorreta.');
+    location.reload();
+    return;
+  }
+  
   if(u&&u.pass===senha){
     err.style.display='none';
     var loginTime = Date.now();
@@ -1560,6 +1585,7 @@ function doLogin(){
   }else{
     err.textContent='E-mail ou senha incorretos.';
     err.style.display='block';
+    generateCaptcha(); // Generate new captcha on failed login
   }
 }
 function _aplicar(u){
@@ -1663,6 +1689,11 @@ window.addEventListener('load',function(){
 function showView(id){
   document.querySelectorAll('.view').forEach(function(v){v.classList.remove('active');});
   var el=document.getElementById(id);if(el)el.classList.add('active');
+  if(id === 'v-login'){
+    var answer = generateCaptcha();
+    localStorage.setItem('captcha_answer', answer.toString());
+    document.getElementById('captcha-answer').value = ''; // Clear previous answer
+  }
 }
 function sec(id,el){
   document.querySelectorAll('.sec').forEach(function(s){s.classList.remove('active');});
@@ -2187,6 +2218,27 @@ function iniciarCadastroHome(){
   document.getElementById('home-cad-form').style.display='none';
   document.getElementById('home-cad-ok').style.display='block';
 }
+
+// ===== INITIALIZATION =====
+window.addEventListener('DOMContentLoaded', function() {
+  // Check for stored login error and display it
+  var storedError = localStorage.getItem('login_error');
+  if (storedError) {
+    var err = document.getElementById('err');
+    if (err) {
+      err.textContent = storedError;
+      err.style.display = 'block';
+    }
+    localStorage.removeItem('login_error'); // Clear the error after displaying
+  }
+  
+  // Initialize captcha when page loads
+  if (document.getElementById('v-login').classList.contains('active')) {
+    var answer = generateCaptcha();
+    localStorage.setItem('captcha_answer', answer.toString());
+    document.getElementById('captcha-answer').value = '';
+  }
+});
 
 </script>
 

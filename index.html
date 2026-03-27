@@ -1127,6 +1127,7 @@ select.finput{cursor:pointer;}
       <div class="mem-tabs">
         <button class="mem-tab active" onclick="memTab('lista',this)">📋 Lista</button>
         <button class="mem-tab" onclick="memTab('fichas',this)">🗂 Fichas Completas</button>
+        <button class="mem-tab" onclick="memTab('sessions',this)">⏱️ Sessões</button>
       </div>
       <div id="mem-lista-view">
         <div id="mem-lista-container"></div>
@@ -1134,6 +1135,10 @@ select.finput{cursor:pointer;}
       </div>
       <div id="mem-fichas-view" style="display:none;">
         <div id="mem-fichas-container"></div>
+      </div>
+      <div id="mem-sessions-view" style="display:none;">
+        <div id="mem-sessions-container"></div>
+        <div id="mem-sessions-empty" style="text-align:center;padding:40px;color:var(--muted2);display:none;">Nenhuma sessão registrada.</div>
       </div>
     </div>
     <!-- MEU CADASTRO (visível para membros) -->
@@ -1548,7 +1553,9 @@ function doLogin(){
   var u=USERS[email];
   if(u&&u.pass===senha){
     err.style.display='none';
-    localStorage.setItem('tucic_sessao',JSON.stringify({email:email,name:u.name,role:u.role,ini:u.ini,admin:u.admin}));
+    var loginTime = Date.now();
+    var expiresAt = loginTime + (1 * 60 * 60 * 1000); // 24 hours from now
+    localStorage.setItem('tucic_sessao',JSON.stringify({email:email,name:u.name,role:u.role,ini:u.ini,admin:u.admin,loginTime:loginTime,expiresAt:expiresAt}));
     _aplicar(u);
   }else{
     err.textContent='E-mail ou senha incorretos.';
@@ -1581,6 +1588,28 @@ function _aplicar(u){
 function aplicarSessao(u){_aplicar(u);}
 
 function logout(){
+  // Record session time before logging out
+  var s = JSON.parse(localStorage.getItem('tucic_sessao') || '{}');
+  if (s.email && s.loginTime) {
+    var logoutTime = Date.now();
+    var sessionDuration = logoutTime - s.loginTime;
+    var sessionData = {
+      email: s.email,
+      loginTime: s.loginTime,
+      logoutTime: logoutTime,
+      duration: sessionDuration,
+      date: new Date().toLocaleDateString('pt-BR'),
+      expired: s.expiresAt && logoutTime > s.expiresAt
+    };
+    
+    // Store session data
+    var sessions = JSON.parse(localStorage.getItem('tucic_sessions') || '[]');
+    sessions.push(sessionData);
+    // Keep only last 100 sessions to avoid storage bloat
+    if (sessions.length > 100) sessions = sessions.slice(-100);
+    localStorage.setItem('tucic_sessions', JSON.stringify(sessions));
+  }
+  
   modoEdicao=false;isAdmin=false;
   localStorage.removeItem('tucic_sessao');
   function se(id,fn){var el=document.getElementById(id);if(el)fn(el);}
@@ -1599,7 +1628,13 @@ window.addEventListener('load',function(){
     var s=localStorage.getItem('tucic_sessao');
     if(s){
       var sv=JSON.parse(s);
-      if(sv&&sv.email){
+      if(sv&&sv.email&&sv.expiresAt){
+        // Check if session has expired
+        if(Date.now() > sv.expiresAt){
+          localStorage.removeItem('tucic_sessao');
+          showView('v-login');
+          return;
+        }
         _membrosParaUSERS();
         var u=USERS[sv.email];
         if(u){_aplicar(u);}else{localStorage.removeItem('tucic_sessao');}
@@ -1610,6 +1645,18 @@ window.addEventListener('load',function(){
   setTimeout(function(){
     _carregarNuvem().then(function(lista){_membrosParaUSERS(lista);});
   },300);
+  
+  // Check session expiration every minute
+  setInterval(function(){
+    var s=localStorage.getItem('tucic_sessao');
+    if(s){
+      var sv=JSON.parse(s);
+      if(sv&&sv.expiresAt&&Date.now() > sv.expiresAt){
+        logout();
+        alert('Sua sessão expirou por inatividade. Faça login novamente.');
+      }
+    }
+  }, 60000); // Check every 60 seconds
 });
 
 // ===== NAVEGAÇÃO =====
@@ -1772,7 +1819,9 @@ function memTab(tab,el){
   if(el)el.classList.add('active');
   document.getElementById('mem-lista-view').style.display=tab==='lista'?'block':'none';
   document.getElementById('mem-fichas-view').style.display=tab==='fichas'?'block':'none';
+  document.getElementById('mem-sessions-view').style.display=tab==='sessions'?'block':'none';
   if(tab==='fichas')renderFichas();
+  if(tab==='sessions')renderSessions();
 }
 function renderMembros(){
   var container=document.getElementById('mem-lista-container'),empty=document.getElementById('mem-empty');
@@ -1800,6 +1849,96 @@ function renderFichas(){
     var campos=[['Nome de Registro',m.nomeRegistro],['Nome no Terreiro',m.nomeTerreiro],['E-mail',m.email],['CPF',m.cpf],['RG',m.rg],['Nascimento',m.nascimento],['Celular',m.celular],['Instagram',m.instagram],['Profissão',m.profissao],['Nível',m.nivel],['Orixás',m.orixas],['Guia de Frente',m.guiaFrente],['Status',m.status]].filter(function(c){return c[1];});
     return '<div class="mem-card" style="margin-bottom:16px;"><div class="mem-card-header"><div class="mem-avatar" style="width:56px;height:56px;font-size:18px;">'+(m.foto?'<img src="'+m.foto+'">':ini)+'</div><div><div class="mem-name" style="font-size:16px;">'+nome+'</div><div class="mem-email">'+m.email+'</div></div><div style="margin-left:auto;"><button class="btn-sm btn-edit" onclick="editarMembro('+i+')">✏️ Editar</button></div></div><div class="mem-detail-grid" style="margin-top:10px;padding-top:10px;border-top:1px solid var(--borda);">'+campos.map(function(c){return '<div class="mem-detail-item"><span class="mem-detail-label">'+c[0]+'</span><span class="mem-detail-value">'+c[1]+'</span></div>';}).join('')+'</div></div>';
   }).join('');
+}
+function renderSessions(){
+  var container=document.getElementById('mem-sessions-container'),empty=document.getElementById('mem-sessions-empty');
+  if(!container)return;
+  var sessions = JSON.parse(localStorage.getItem('tucic_sessions') || '[]');
+  var membros = getMembros();
+  
+  // Check for active sessions (users who haven't logged out)
+  var activeSessions = [];
+  var currentSession = JSON.parse(localStorage.getItem('tucic_sessao') || '{}');
+  if (currentSession.email && currentSession.loginTime) {
+    activeSessions.push({
+      email: currentSession.email,
+      loginTime: currentSession.loginTime,
+      expiresAt: currentSession.expiresAt,
+      current: true
+    });
+  }
+  
+  // Group past sessions by user
+  var userSessions = {};
+  sessions.forEach(function(sess) {
+    if (!userSessions[sess.email]) userSessions[sess.email] = [];
+    userSessions[sess.email].push(sess);
+  });
+  
+  var allUsers = new Set([...Object.keys(userSessions), ...activeSessions.map(s => s.email)]);
+  
+  if(allUsers.size === 0) {
+    container.innerHTML = '';
+    if(empty) empty.style.display = 'block';
+    return;
+  }
+  if(empty) empty.style.display = 'none';
+  
+  var html = '';
+  
+  // Show active sessions first
+  if (activeSessions.length > 0) {
+    html += '<div style="margin-bottom:20px;"><h4 style="color:var(--azul);font-size:16px;margin-bottom:10px;">🔴 Usuários Conectados Agora</h4>';
+    html += activeSessions.map(function(sess) {
+      var membro = membros.find(function(m) { return m.email === sess.email; });
+      var nome = membro ? (membro.nomeTerreiro || membro.nomeRegistro || sess.email) : sess.email;
+      var ini = nome.split(' ').slice(0,2).map(function(p){return p[0]||'';}).join('').toUpperCase();
+      var loginTime = new Date(sess.loginTime).toLocaleString('pt-BR');
+      var duration = Math.floor((Date.now() - sess.loginTime) / 1000 / 60); // minutes
+      var expiresIn = sess.expiresAt ? Math.floor((sess.expiresAt - Date.now()) / 1000 / 60) : null; // minutes until expiration
+      
+      return '<div class="mem-card" style="border-color:#DC2626;"><div class="mem-card-header"><div class="mem-avatar" style="width:56px;height:56px;font-size:18px;background:#DC2626;">' + ini + '</div><div><div class="mem-name" style="font-size:16px;">' + nome + '</div><div class="mem-email">' + sess.email + '</div><div style="font-size:12px;color:#DC2626;">Conectado há ' + duration + ' minutos' + (expiresIn ? ' | Expira em ' + expiresIn + ' minutos' : '') + '</div></div></div></div>';
+    }).join('');
+    html += '</div>';
+  }
+  
+  // Show session history
+  html += '<div><h4 style="color:var(--azul);font-size:16px;margin-bottom:10px;">📊 Histórico de Sessões</h4>';
+  html += Array.from(allUsers).map(function(email) {
+    var sessList = userSessions[email] || [];
+    var membro = membros.find(function(m) { return m.email === email; });
+    var nome = membro ? (membro.nomeTerreiro || membro.nomeRegistro || email) : email;
+    var ini = nome.split(' ').slice(0,2).map(function(p){return p[0]||'';}).join('').toUpperCase();
+    
+    // Calculate total time and average session
+    var totalDuration = sessList.reduce(function(sum, s) { return sum + s.duration; }, 0);
+    var avgDuration = sessList.length > 0 ? totalDuration / sessList.length : 0;
+    
+    function formatDuration(ms) {
+      var seconds = Math.floor(ms / 1000);
+      var minutes = Math.floor(seconds / 60);
+      var hours = Math.floor(minutes / 60);
+      minutes = minutes % 60;
+      seconds = seconds % 60;
+      return hours > 0 ? hours + 'h ' + minutes + 'm' : minutes + 'm ' + seconds + 's';
+    }
+    
+    var sessionDetails = sessList.slice(-5).reverse().map(function(sess) { // Show last 5 sessions
+      var loginTime = new Date(sess.loginTime).toLocaleString('pt-BR');
+      var duration = formatDuration(sess.duration);
+      var status = sess.expired ? ' (expirou)' : ' (logout manual)';
+      return '<div style="padding:6px 0;border-bottom:1px solid var(--borda);font-size:12px;"><strong>' + loginTime + '</strong> - ' + duration + status + '</div>';
+    }).join('');
+    
+    if (sessList.length === 0) {
+      sessionDetails = '<div style="padding:6px 0;font-size:12px;color:var(--muted2);">Nenhuma sessão registrada</div>';
+    }
+    
+    return '<div class="mem-card" style="margin-bottom:16px;"><div class="mem-card-header"><div class="mem-avatar" style="width:56px;height:56px;font-size:18px;">' + ini + '</div><div><div class="mem-name" style="font-size:16px;">' + nome + '</div><div class="mem-email">' + email + '</div><div style="font-size:12px;color:var(--muted);">Total: ' + formatDuration(totalDuration) + ' | Média: ' + formatDuration(avgDuration) + ' | Sessões: ' + sessList.length + '</div></div></div><div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--borda);max-height:150px;overflow-y:auto;">' + sessionDetails + '</div></div>';
+  }).join('');
+  html += '</div>';
+  
+  container.innerHTML = html;
 }
 function abrirCadastroMembro(pre){
   document.getElementById('membro-modal-titulo').textContent='Novo Membro';document.getElementById('membro-id').value='';

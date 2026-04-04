@@ -861,27 +861,6 @@ select.finput{cursor:pointer;}
       <div class="ps">Abertura, defumação e responsáveis por cada gira</div>
       <div class="av warn" style="margin-bottom:8px;"><div class="avb">Caso você falte, solicite substituto e informe ao responsável pela gira e à Mãe de Santo. Quem abre na sexta abre também no sábado de homenagem.</div></div>
       <div class="av blue" style="margin-bottom:14px;"><div class="avb">Os recados paroquiais de sexta-feira serão passados pela equipe responsável da quarta-feira.</div></div>
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
-        <label style="font-size:12px;color:var(--muted2);white-space:nowrap;">Filtrar por pessoa:</label>
-        <select id="fn-person-filter" class="finput" style="flex:1;min-width:160px;max-width:280px;font-size:13px;" onchange="buildFuncoes()">
-          <option value="">— Todos —</option>
-          <option>ALDA</option><option>ALINE</option><option>ANA PAULA</option><option>AURORA</option>
-          <option>BARBARA</option><option>DAIANE</option><option>DALVANI</option><option>DANNY</option>
-          <option>DIONATHAN</option><option>DOUGLAS</option><option>EMANOELLE</option><option>EVANDRO</option>
-          <option>FÊ BOANOVA</option><option>GIOVANA</option><option>ISA</option><option>J. RICARDO</option>
-          <option>JULIANA</option><option>JÉSSICA</option><option>KAREN</option><option>MARCELO</option>
-          <option>MATEUS</option><option>MAYARA</option><option>MAYLLA</option><option>MONICA</option>
-          <option>MÃE GEYSA</option><option>MÃE LORENA</option><option>MÃE P. GEYSA</option>
-          <option>MÃE P. PAULA</option><option>MÃE P. TEREZINHA</option><option>MÃE P. VITÓRIA</option>
-          <option>MÃE PAULA</option><option>MÃE TEREZINHA</option><option>MÃE TROVÃO</option>
-          <option>MÃE VITÓRIA</option><option>PAI AUGUSTO</option><option>PAI CAIO</option>
-          <option>PAI HENRIQUE</option><option>PAI LUCIANO</option><option>PAI P. HENRIQUE</option>
-          <option>PAI P. LUCIANO</option><option>STEFANI</option><option>STHEFANY</option>
-          <option>TAIS REIS</option><option>TIAGO</option><option>YANN</option>
-        </select>
-        <button class="btn-sm" onclick="document.getElementById('fn-person-filter').value='';buildFuncoes();" style="font-size:12px;padding:5px 12px;">Limpar</button>
-      </div>
-      <div id="fn-person-badge" style="display:none;margin-bottom:10px;"></div>
       <div class="tabs" id="fn-tabs">
         <button class="tab active" onclick="fnTab('todos',this)">Todos</button>
         <button class="tab" onclick="fnTab('sex',this)">Sexta-feira</button>
@@ -2116,62 +2095,16 @@ function _badge(day){
   if(d==='SEGUNDA-FEIRA')return '<span style="font-size:10px;padding:2px 8px;border-radius:20px;background:#EDE9FE;color:#6D28D9;font-weight:500;">Segunda</span>';
   return '<span style="font-size:10px;padding:2px 8px;border-radius:20px;background:var(--surface2);color:var(--muted);font-weight:500;">'+_tit(day)+'</span>';
 }
-function _roleLabel(role){
-  var map={ab:'Abertura',df:'Defumação',aux:'Aux. Defumação',mds:'Mds Responsável',pp:'PP/MP Responsável',abq:'Abertura',dfq:'Defumação',axq:'Aux. Defumação'};
-  return map[role]||role;
-}
 var _MESES_FN=['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
-function _matchPerson(val, person){
-  if(!person||!val) return false;
-  return val.toUpperCase().trim()===person.toUpperCase().trim();
-}
-function _highlightCell(val, person){
-  var t=_tit(val||'—');
-  if(person && _matchPerson(val, person)){
-    return '<strong style="color:var(--azul);background:var(--azul-bg);padding:1px 5px;border-radius:4px;">'+t+'</strong>';
-  }
-  return t;
-}
-function _rowMatchesPerson(f, person){
-  if(!person) return true;
-  var fields=['ab','df','aux','mds','pp','abq','dfq','axq'];
-  for(var i=0;i<fields.length;i++){
-    if(_matchPerson(f[fields[i]]||'', person)) return true;
-  }
-  return false;
-}
-function _getRoles(f, person){
-  // Returns array of role labels where this person appears
-  var map={ab:'Abertura (Gira)',df:'Defumação (Gira)',aux:'Aux. Defumação (Gira)',mds:'Mds Responsável (Qua)',pp:'PP/MP Responsável (Qua)',abq:'Abertura (Qua)',dfq:'Defumação (Qua)',axq:'Aux. Defumação (Qua)'};
-  var roles=[];
-  Object.keys(map).forEach(function(k){if(_matchPerson(f[k]||'',person)) roles.push(map[k]);});
-  return roles;
-}
 function buildFuncoes(){
   var elTodos=document.getElementById('fn-todos');
   var elSex=document.getElementById('fn-sex');
   var elQua=document.getElementById('fn-qua');
   var elSab=document.getElementById('fn-sab');
-  var badge=document.getElementById('fn-person-badge');
   if(!elTodos)return;
-
-  var sel=document.getElementById('fn-person-filter');
-  var person=sel?sel.value.trim():'';
-
-  // Update badge
-  if(badge){
-    if(person){
-      badge.style.display='block';
-      badge.innerHTML='<span style="display:inline-flex;align-items:center;gap:6px;background:var(--azul-bg);color:var(--azul);border:1px solid var(--borda-azul);border-radius:20px;padding:4px 12px;font-size:12px;font-weight:500;">Mostrando funções de: '+_tit(person)+'</span>';
-    } else {
-      badge.style.display='none';
-      badge.innerHTML='';
-    }
-  }
 
   var htmlTodos='',htmlSex='',htmlQua='',htmlSab='';
   var curMonTodos=-1,curMonSex=-1,curMonQua=-1,curMonSab=-1;
-  var cntTodos=0,cntSex=0,cntQua=0,cntSab=0;
 
   var tblHead='<div style="overflow-x:auto;"><table class="at">';
   var tblSexHead=tblHead+'<thead><tr><th>Data</th><th>Gira</th><th>Abertura</th><th>Defumação</th><th>Aux. Defumação</th></tr></thead><tbody>';
@@ -2187,79 +2120,67 @@ function buildFuncoes(){
     var monLabel='<div style="font-size:11px;font-weight:500;letter-spacing:.5px;text-transform:uppercase;color:var(--muted2);padding:12px 0 6px;border-bottom:0.5px solid var(--borda);margin-bottom:8px;">'+_MESES_FN[mon]+'</div>';
     var dayUp=(f.day||'').toUpperCase();
     var isSex=dayUp==='SEXTA-FEIRA';
+    var isQua=dayUp==='QUARTA-FEIRA'||dayUp==='SEGUNDA-FEIRA';
     var isSab=dayUp==='SÁBADO';
 
-    var matchesPerson=_rowMatchesPerson(f,person);
-
     // --- TODOS ---
-    if(matchesPerson){
-      if(mon!==curMonTodos){curMonTodos=mon;htmlTodos+=monLabel;}
-      cntTodos++;
-      var roles=person?_getRoles(f,person):[];
-      var roleBadge=roles.length?'<div style="margin-top:7px;display:flex;flex-wrap:wrap;gap:4px;">'+roles.map(function(r){return '<span style="font-size:10px;padding:2px 8px;border-radius:20px;background:var(--azul-bg);color:var(--azul);border:1px solid var(--borda-azul);font-weight:500;">'+r+'</span>';}).join('')+'</div>':'';
-      var card='<div style="background:var(--surface);border:0.5px solid var(--borda);border-radius:10px;padding:11px 13px;margin-bottom:7px;'+(person?'border-left:3px solid var(--azul);':'')+'">'; 
-      card+='<div style="display:flex;align-items:center;gap:7px;margin-bottom:8px;flex-wrap:wrap;">';
-      card+='<span style="font-size:13px;font-weight:500;color:var(--azul);">'+dd+'</span>';
-      card+=_badge(f.day);
-      card+='<span style="font-size:12px;color:var(--text);">'+_tit(f.g)+'</span>';
+    if(mon!==curMonTodos){curMonTodos=mon;htmlTodos+=monLabel;}
+    var card='<div style="background:var(--surface);border:0.5px solid var(--borda);border-radius:10px;padding:11px 13px;margin-bottom:7px;">';
+    card+='<div style="display:flex;align-items:center;gap:7px;margin-bottom:8px;flex-wrap:wrap;">';
+    card+='<span style="font-size:13px;font-weight:500;color:var(--azul);">'+dd+'</span>';
+    card+=_badge(f.day);
+    card+='<span style="font-size:12px;color:var(--text);">'+_tit(f.g)+'</span>';
+    card+='</div>';
+    if(f.ab||f.df||f.aux){
+      card+='<div style="font-size:11px;font-weight:500;color:var(--muted2);margin-bottom:6px;">Gira Principal</div>';
+      card+='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;">';
+      card+='<div><div style="font-size:10px;color:var(--muted2);">Abertura</div><div style="font-size:12px;font-weight:500;color:var(--text);">'+_tit(f.ab||'—')+'</div></div>';
+      card+='<div><div style="font-size:10px;color:var(--muted2);">Defumação</div><div style="font-size:12px;font-weight:500;color:var(--text);">'+_tit(f.df||'—')+'</div></div>';
+      card+='<div><div style="font-size:10px;color:var(--muted2);">Aux. Defumação</div><div style="font-size:12px;font-weight:500;color:var(--text);">'+_tit(f.aux||'—')+'</div></div>';
       card+='</div>';
-      if(f.ab||f.df||f.aux){
-        card+='<div style="font-size:11px;font-weight:500;color:var(--muted2);margin-bottom:6px;">Gira Principal</div>';
-        card+='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;">';
-        card+='<div><div style="font-size:10px;color:var(--muted2);">Abertura</div><div style="font-size:12px;font-weight:500;">'+_highlightCell(f.ab,person)+'</div></div>';
-        card+='<div><div style="font-size:10px;color:var(--muted2);">Defumação</div><div style="font-size:12px;font-weight:500;">'+_highlightCell(f.df,person)+'</div></div>';
-        card+='<div><div style="font-size:10px;color:var(--muted2);">Aux. Defumação</div><div style="font-size:12px;font-weight:500;">'+_highlightCell(f.aux,person)+'</div></div>';
-        card+='</div>';
-      }
-      if(f.dq){
-        var pq=f.dq.split('-');
-        card+='<div style="border-top:0.5px solid var(--borda);margin:9px 0;"></div>';
-        card+='<div style="font-size:11px;font-weight:500;color:var(--muted2);margin-bottom:6px;">Quarta-feira ('+pq[2]+'/'+pq[1]+')</div>';
-        card+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:5px;">';
-        card+='<div><div style="font-size:10px;color:var(--muted2);">Mds Responsável</div><div style="font-size:12px;font-weight:500;">'+_highlightCell(f.mds,person)+'</div></div>';
-        card+='<div><div style="font-size:10px;color:var(--muted2);">PP/MP Responsável</div><div style="font-size:12px;font-weight:500;">'+_highlightCell(f.pp,person)+'</div></div>';
-        card+='</div>';
-        card+='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;">';
-        card+='<div><div style="font-size:10px;color:var(--muted2);">Abertura</div><div style="font-size:12px;font-weight:500;">'+_highlightCell(f.abq,person)+'</div></div>';
-        card+='<div><div style="font-size:10px;color:var(--muted2);">Defumação</div><div style="font-size:12px;font-weight:500;">'+_highlightCell(f.dfq,person)+'</div></div>';
-        card+='<div><div style="font-size:10px;color:var(--muted2);">Aux.</div><div style="font-size:12px;font-weight:500;">'+_highlightCell(f.axq,person)+'</div></div>';
-        card+='</div>';
-      }
-      if(roleBadge) card+=roleBadge;
-      card+='</div>';
-      htmlTodos+=card;
     }
+    if(f.dq){
+      var pq=f.dq.split('-');
+      card+='<div style="border-top:0.5px solid var(--borda);margin:9px 0;"></div>';
+      card+='<div style="font-size:11px;font-weight:500;color:var(--muted2);margin-bottom:6px;">Quarta-feira ('+pq[2]+'/'+pq[1]+')</div>';
+      card+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:5px;">';
+      card+='<div><div style="font-size:10px;color:var(--muted2);">Mds Responsável</div><div style="font-size:12px;font-weight:500;color:var(--text);">'+_tit(f.mds||'—')+'</div></div>';
+      card+='<div><div style="font-size:10px;color:var(--muted2);">PP/MP Responsável</div><div style="font-size:12px;font-weight:500;color:var(--text);">'+_tit(f.pp||'—')+'</div></div>';
+      card+='</div>';
+      card+='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;">';
+      card+='<div><div style="font-size:10px;color:var(--muted2);">Abertura</div><div style="font-size:12px;font-weight:500;color:var(--text);">'+_tit(f.abq||'—')+'</div></div>';
+      card+='<div><div style="font-size:10px;color:var(--muted2);">Defumação</div><div style="font-size:12px;font-weight:500;color:var(--text);">'+_tit(f.dfq||'—')+'</div></div>';
+      card+='<div><div style="font-size:10px;color:var(--muted2);">Aux.</div><div style="font-size:12px;font-weight:500;color:var(--text);">'+_tit(f.axq||'—')+'</div></div>';
+      card+='</div>';
+    }
+    card+='</div>';
+    htmlTodos+=card;
 
     // --- SEXTA ---
-    if(isSex && matchesPerson){
+    if(isSex){
       if(mon!==curMonSex){curMonSex=mon;htmlSex+='<tr><td colspan="5" style="font-size:11px;font-weight:500;letter-spacing:.5px;text-transform:uppercase;color:var(--muted2);padding:10px 8px 4px;border-bottom:none;">'+_MESES_FN[mon]+'</td></tr>';}
-      cntSex++;
-      htmlSex+='<tr><td><strong style="color:var(--azul);">'+dd+'</strong></td><td>'+_tit(f.g)+'</td><td>'+_highlightCell(f.ab,person)+'</td><td>'+_highlightCell(f.df,person)+'</td><td>'+_highlightCell(f.aux,person)+'</td></tr>';
+      htmlSex+='<tr><td><strong style="color:var(--azul);">'+dd+'</strong></td><td>'+_tit(f.g)+'</td><td>'+_tit(f.ab||'—')+'</td><td>'+_tit(f.df||'—')+'</td><td>'+_tit(f.aux||'—')+'</td></tr>';
     }
 
-    // --- QUARTA ---
-    if(f.dq && matchesPerson){
+    // --- QUARTA (inclui segundas com dados de quarta) ---
+    if(f.dq){
       var pq2=f.dq.split('-');var ddq=pq2[2]+'/'+pq2[1];var monq=parseInt(pq2[1])-1;
       if(monq!==curMonQua){curMonQua=monq;htmlQua+='<tr><td colspan="7" style="font-size:11px;font-weight:500;letter-spacing:.5px;text-transform:uppercase;color:var(--muted2);padding:10px 8px 4px;border-bottom:none;">'+_MESES_FN[monq]+'</td></tr>';}
-      cntQua++;
-      htmlQua+='<tr><td><strong style="color:var(--azul);">'+ddq+'</strong></td><td>'+_tit(f.g)+'</td><td>'+_highlightCell(f.mds,person)+'</td><td>'+_highlightCell(f.pp,person)+'</td><td>'+_highlightCell(f.abq,person)+'</td><td>'+_highlightCell(f.dfq,person)+'</td><td>'+_highlightCell(f.axq,person)+'</td></tr>';
+      htmlQua+='<tr><td><strong style="color:var(--azul);">'+ddq+'</strong></td><td>'+_tit(f.g)+'</td><td>'+_tit(f.mds||'—')+'</td><td>'+_tit(f.pp||'—')+'</td><td>'+_tit(f.abq||'—')+'</td><td>'+_tit(f.dfq||'—')+'</td><td>'+_tit(f.axq||'—')+'</td></tr>';
     }
 
     // --- SÁBADO ---
-    if(isSab && matchesPerson){
+    if(isSab){
       if(mon!==curMonSab){curMonSab=mon;htmlSab+='<tr><td colspan="5" style="font-size:11px;font-weight:500;letter-spacing:.5px;text-transform:uppercase;color:var(--muted2);padding:10px 8px 4px;border-bottom:none;">'+_MESES_FN[mon]+'</td></tr>';}
-      cntSab++;
-      htmlSab+='<tr><td><strong style="color:var(--azul);">'+dd+'</strong></td><td>'+_tit(f.g)+'</td><td>'+_highlightCell(f.ab,person)+'</td><td>'+_highlightCell(f.df,person)+'</td><td>'+_highlightCell(f.aux,person)+'</td></tr>';
+      htmlSab+='<tr><td><strong style="color:var(--azul);">'+dd+'</strong></td><td>'+_tit(f.g)+'</td><td>'+_tit(f.ab||'—')+'</td><td>'+_tit(f.df||'—')+'</td><td>'+_tit(f.aux||'—')+'</td></tr>';
     }
   });
 
-  var empty='<div style="color:var(--muted2);font-size:13px;padding:20px 0;text-align:center;">Nenhuma função encontrada'+( person?' para '+_tit(person):'')+' nesta categoria.</div>';
-  elTodos.innerHTML=cntTodos?htmlTodos:empty;
-  elSex.innerHTML=(cntSex?htmlSex+'</tbody></table></div>':empty);
-  elQua.innerHTML=(cntQua?htmlQua+'</tbody></table></div>':empty);
-  elSab.innerHTML=(cntSab?htmlSab+'</tbody></table></div>':empty);
+  elTodos.innerHTML=htmlTodos;
+  elSex.innerHTML=htmlSex+'</tbody></table></div>';
+  elQua.innerHTML=htmlQua+'</tbody></table></div>';
+  elSab.innerHTML=htmlSab+'</tbody></table></div>';
 }
-function _cap(s){return s?s.charAt(0)+s.slice(1).toLowerCase():'';}
 
 // ===== PÁGINAS =====
 function novaPagina(){paginaEditando=null;document.getElementById('page-titulo').value='';document.getElementById('page-icone').value='📄';document.getElementById('editor').innerHTML='';document.getElementById('editor-area').style.display='block';document.getElementById('editor').focus();}

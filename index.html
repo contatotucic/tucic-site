@@ -1543,7 +1543,7 @@ var ORIXAS=[
 {
   n:'Oxum',
   s:'Ora Iêiêô · Aiêiêô',
-  cor:'#B45309',
+  cor:'#1e3a8a',
   sig:'Salve a mãe do sorriso gentil',
   sinc:'Nossa Senhora da Imaculada Conceição, N. S. Aparecida',
   data:'08 de dezembro (NS Conceição) · 12 de outubro (NS Aparecida)',
@@ -2388,11 +2388,12 @@ function _aplicar(u){
   }
   showView('v-dash');
   buildAll();
-  // Fechar todos os grupos da sidebar e ir para Início
+  // Fechar todos os grupos da sidebar, resetar estado interno e ir para Início
   document.querySelectorAll('.nav-group-header').forEach(function(h){
     h.classList.remove('open');
     var c=h.nextElementSibling;if(c&&c.classList.contains('nav-children'))c.classList.remove('open');
   });
+  if(typeof resetSecState==='function')resetSecState();
   document.querySelectorAll('.sec').forEach(function(s){s.classList.remove('active');});
   document.querySelectorAll('.ni,.nav-page-item').forEach(function(n){n.classList.remove('active');});
   var secInicio=document.getElementById('sec-inicio');if(secInicio)secInicio.classList.add('active');
@@ -2488,7 +2489,51 @@ function showView(id){
     document.getElementById('captcha-answer').value = ''; // Clear previous answer
   }
 }
+function resetSecState(){
+  // Orixás: fechar painel de detalhe
+  var odet=document.getElementById('odet');
+  if(odet){odet.style.display='none';odet.innerHTML='';}
+  // Linhas do terreiro: fechar todos os accordions
+  document.querySelectorAll('[id^="lt"][id$="-body"]').forEach(function(b){
+    b.style.display='none';
+    var uid=b.id.replace('-body','');
+    var chev=document.getElementById(uid+'-chev');
+    if(chev)chev.style.transform='rotate(0deg)';
+  });
+  // Sete Linhas: fechar todos os accordions
+  document.querySelectorAll('[id^="sl"][id$="-body"]').forEach(function(b){
+    b.style.display='none';
+    var uid=b.id.replace('-body','');
+    var chev=document.getElementById(uid+'-chev');
+    if(chev)chev.style.transform='rotate(0deg)';
+  });
+  // Orixá tabs: nenhum detalhe aberto (já coberto pelo odet acima)
+  // Tabs internas de seções: voltar para a primeira aba
+  document.querySelectorAll('.tabs').forEach(function(tabBar){
+    var tabs=tabBar.querySelectorAll('.tab');
+    if(!tabs.length)return;
+    var secEl=tabBar.closest('.sec');
+    if(!secEl||secEl.classList.contains('active'))return; // só reseta seções inativas
+    // voltar primeira aba
+    var g=null;
+    if(tabs[0].getAttribute('onclick')){
+      var m=tabs[0].getAttribute('onclick').match(/tab\('([^']+)','([^']+)'/);
+      if(m){
+        g=m[1];
+        var firstId=m[2];
+        secEl.querySelectorAll('[id^="'+g+'-"]').forEach(function(t){
+          if(t.classList.contains('tc'))t.classList.remove('active');
+        });
+        var firstPanel=document.getElementById(g+'-'+firstId);
+        if(firstPanel)firstPanel.classList.add('active');
+        tabs.forEach(function(tb){tb.classList.remove('active');});
+        tabs[0].classList.add('active');
+      }
+    }
+  });
+}
 function sec(id,el){
+  resetSecState();
   document.querySelectorAll('.sec').forEach(function(s){s.classList.remove('active');});
   document.querySelectorAll('.ni,.nav-page-item').forEach(function(n){n.classList.remove('active');});
   var s=document.getElementById('sec-'+id);if(s)s.classList.add('active');

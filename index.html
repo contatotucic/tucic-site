@@ -694,15 +694,15 @@ select.finput{cursor:pointer;}
       <div><div class="sb-name" id="sb-name">Membro</div><div class="sb-role" id="sb-role">MEMBRO</div></div>
     </div>
     <!-- GRUPO: PRINCIPAL (sempre visível, sem colapso) -->
-    <div class="ni active" id="nav-inicio" onclick="sec('inicio',this)"><span class="ni-ic">🏠</span>Início</div>
+    <div class="ni" id="nav-inicio" onclick="sec('inicio',this)"><span class="ni-ic">🏠</span>Início</div>
     <div class="ni" id="nav-avisos" onclick="sec('avisos',this)"><span class="ni-ic">📢</span>Avisos</div>
 
     <!-- GRUPO: CALENDÁRIOS -->
     <div class="nav-group">
-      <div class="nav-group-header open" onclick="toggleGroup(this)">
+      <div class="nav-group-header" onclick="toggleGroup(this)">
         <span class="grp-ic">🗓️</span>Calendários<span class="chevron">▶</span>
       </div>
-      <div class="nav-children open">
+      <div class="nav-children">
         <div class="ni" onclick="sec('calendario',this)"><span class="ni-ic">📅</span>Calendário 2026</div>
         <div class="ni" onclick="sec('firmezas',this)"><span class="ni-ic">🕯️</span>Firmezas 2026</div>
         <div class="ni" onclick="sec('funcoes',this)"><span class="ni-ic">📋</span>Funções nas Giras</div>
@@ -711,10 +711,10 @@ select.finput{cursor:pointer;}
 
     <!-- GRUPO: MANUAL DO MÉDIUM -->
     <div class="nav-group">
-      <div class="nav-group-header open" onclick="toggleGroup(this)">
+      <div class="nav-group-header" onclick="toggleGroup(this)">
         <span class="grp-ic">📗</span>Manual do Médium<span class="chevron">▶</span>
       </div>
-      <div class="nav-children open">
+      <div class="nav-children">
         <div class="ni" onclick="sec('bemestar',this)"><span class="ni-ic">👋</span>Bem-vindo(a)</div>
         <div class="ni" onclick="sec('preceitos',this)"><span class="ni-ic">🕊️</span>Preceitos</div>
         <div class="ni" onclick="sec('mensalidade',this)"><span class="ni-ic">💰</span>Mensalidade</div>
@@ -795,7 +795,7 @@ select.finput{cursor:pointer;}
     </div>
 
     <!-- INÍCIO -->
-    <div id="sec-inicio" class="sec active">
+    <div id="sec-inicio" class="sec">
       <div class="ph">Bem-vindo(a) ao Portal</div>
       <div class="ps">Saravá! Axé, força e luz na sua caminhada. 🌿</div>
       <div class="grid">
@@ -1842,7 +1842,112 @@ var ORIXAS=[
 }
 ];
 var GIRAS_D=[{num:'1ª',n:"Povo d'Água — Marinheiros",tipo:'Descarrego',desc:"Entidades muito elevadas. Chegam girando, limpando com águas e vento. Não fazem consultas."},{num:'2ª',n:'Pombagira',tipo:'Consultas',desc:'Consultas e trabalhos de magia — vida sentimental, emprego, finanças.'},{num:'3ª',n:'Xangô — Ibejada',tipo:'Descarrego + Consultas',desc:'Xangô: juízes espirituais, trabalham no carma. Ibejada: para casos de doença, família e gravidez.'},{num:'4ª',n:'Boiadeiros',tipo:'Consultas',desc:'Evolução material e espiritual. Magias com palheiro, cachaça, cerveja e velas.'},{num:'5ª',n:'Ciganos',tipo:'Consultas',desc:'Sorte, dinheiro, prosperidade e amor. Cartas, cristais, incensos, fumo e flores.'},{num:'6ª',n:'Exu',tipo:'Consultas',desc:'Defesa dos médiuns e do terreiro. Velas pretas e vermelhas, charutos, bebidas fortes.'},{num:'7ª',n:'Obaluaê/Omulu — Baianos',tipo:'Descarrego + Consultas',desc:'Omulu: energia da terra/água para saúde. Baianos: atendimentos de consulta.'},{num:'8ª',n:'Oxóssi',tipo:'Descarrego + Consultas',desc:'Charutos para limpeza, Curiado. Ajudam na vida material.'},{num:'9ª',n:'Ogum — Malandros',tipo:'Descarrego',desc:'Braço forte de Oxalá. Não dão consultas. Charuto, cerveja, espada ou ervas.'},{num:'10ª',n:'Pretos Velhos',tipo:'Consultas',desc:'Psicólogos dos aflitos. Cachimbo para limpeza, rezas, patuás.'}];
-var LINHAS_D=[{n:"Linha das Águas",d:"Caboclas de Iemanjá, Oxum, Obá, Iansã e Nanã",c:'#0EA5E9'},{n:"Linha de Ibejada",d:"Erês — Crianças de Ibeji",c:'#EC4899'},{n:"Linha das Almas",d:"Obaluaê/Omulu, Pretos Velhos",c:'#475569'},{n:"Linha de Ogum",d:"Caboclos ou Falangeiros de Ogum",c:'#DC2626'},{n:"Linha de Oxossi",d:"Caboclos de Oxóssi",c:'#15803D'},{n:"Linha de Xangô",d:"Caboclos de Xangô",c:'#92400E'},{n:"Linha de Ciganos",d:"Espíritos ciganos",c:'#D97706'},{n:"Linha do Povo do Oriente",d:"Espíritos elevados de cura",c:'#EA580C'},{n:"Linha de Boiadeiros",d:"Espíritos da boiada e do campo",c:'#78350F'},{n:"Linha de Marinheiros",d:"Povo d'água",c:'#1D4ED8'},{n:"Linha de Malandros",d:"Coordenada por Zé Pelintra",c:'#9F1239'},{n:"Linha da Esquerda",d:"Exu, Pomba-Gira e Mirim",c:'#334155'},{n:"Linha de Baianos",d:"Baianos e suas correntes",c:'#B45309'}];
+var LINHAS_D=[
+{n:"Linha das Águas",c:'#0EA5E9',
+ sub:"Caboclas de Iemanjá, Oxum, Obá, Iansã e Nanã",
+ orixas:"Iemanjá, Oxum, Iansã, Nanã, Obá",
+ desc:"A Linha das Águas reúne as entidades femininas que trabalham sob a regência das grandes Iabás. Iemanjá é a rainha dos mares e mãe universal; Oxum rege as águas doces, o amor e a fertilidade; Iansã comanda os ventos e as tempestades; Nanã governa as águas paradas e os mistérios da morte e do renascimento; Obá domina as corredeiras e as águas revoltas. Juntas, estas orixás regem as relações humanas, a família, a geração da vida e o ciclo de nascimento, morte e reencarnação.",
+ atuacao:"Família, amor, fertilidade, cura emocional, proteção das mães e das relações",
+ saudacao:"Salve as Mães das Águas!",
+ oferenda:"Flores brancas, perfumes, frutas, alimentos doces; oferendas nas praias, cachoeiras e rios"
+},
+{n:"Linha de Ibejada",c:'#EC4899',
+ sub:"Erês — Crianças de Ibeji / Cosme e Damião",
+ orixas:"Ibeji — sincretizado com Cosme e Damião",
+ desc:"Representam a pureza, a inocência e a simplicidade. Constituem a mais pura e intensa energia canalizada na Umbanda — onde há crianças espirituais não há espíritos malignos. São bagunceiros, barulhentos, querem atenção o tempo todo. Não gostam de quebrar demandas, mas são excelentes conselheiros e, quando criam afinidade com o consulente, atendem seu pedido com rapidez. São mais procurados para os casos de família, gravidez e doenças. A falange das crianças é uma das poucas que consegue dominar a magia.",
+ atuacao:"Saúde infantil, família, gravidez, alegria no lar, proteção de crianças, tudo que se inicia",
+ saudacao:"Oni Erê! Salve os Ibejis!",
+ oferenda:"Doces, frutas coloridas, brinquedos, refrigerantes — jamais Coca-Cola. Oferendas em jardins, praças e parques"
+},
+{n:"Linha das Almas",c:'#475569',
+ sub:"Pretos-Velhos e Obaluaê/Omulu",
+ orixas:"Obaluaê/Omulú",
+ desc:"Para entender a linha dos pretos-velhos é necessário compreender a história dos escravos no Brasil. Aqueles que conseguiam chegar a uma idade mais avançada eram os responsáveis por ensinar os mais novos, consolavam os desiludidos, desesperados e doentes. Ser atendido por um preto-velho é a certeza de receber a palavra certa e sábia, de quem já sofreu mazelas muito maiores do que as suas, sempre com muito carinho e humildade. A corrente dos pretos-velhos encontrou na Umbanda uma forma de continuar sua evolução através da prática da caridade. Simbolizam o homem no crepúsculo de sua vida.",
+ atuacao:"Cura espiritual, aconselhamento, descarrego, rezas, patuás, consolo e evolução das almas",
+ saudacao:"Salve os Pretos-Velhos! Que Deus abençoe meus filhos!",
+ oferenda:"Cachimbo, fumo de corda, café, água, vinho tinto. Oferendas em cemitérios e cruzes de encruzilhada"
+},
+{n:"Linha de Ogum",c:'#DC2626',
+ sub:"Caboclos e Falangeiros de Ogum",
+ orixas:"Ogum — São Jorge ou Santo Antônio",
+ desc:"Ogum é o primeiro Orixá a descer do Orun para o Aiyê, patrono da tecnologia e protetor dos guerreiros. Na Umbanda é o protetor maior, sem o qual não há segurança nas giras. É o agente que executa a lei ditada por Xangô: não discute a lei, apenas a aplica de forma exemplar. Não existe trabalho umbandista sem Ogum — é fundamento da religião pedir sua proteção no início dos trabalhos. Aos amigos, tudo; aos inimigos, a mão forte e impiedosa da destruição.",
+ atuacao:"Proteção geral, abertura de caminhos, combate a demandas, proteção nas giras, guerras e conflitos",
+ saudacao:"Ogunhê! Patacori!",
+ oferenda:"Cerveja branca, feijoada, carne, feijão. Oferendas em estradas, caminhos e encruzilhadas"
+},
+{n:"Linha de Oxóssi",c:'#15803D',
+ sub:"Caboclos das Matas",
+ orixas:"Oxóssi — São Sebastião",
+ desc:"Não existe em toda a Umbanda uma entidade que melhor a represente do que os caboclos. Primeiros habitantes desta terra, absorveram os mistérios da natureza e são a melhor manifestação da força da religião. A Umbanda foi iniciada pelo Caboclo das Sete Encruzilhadas — um caboclo de Oxóssi. Os caboclos representam o homem em pleno vigor físico, com plenas condições de alcançar todos os seus objetivos. São excepcionais em trabalhos de prosperidade, abrindo caminhos e envolvendo o consulente em energias de altíssima vibração positiva.",
+ atuacao:"Doutrina, conhecimento, prosperidade, abertura de caminhos, cura com ervas, descarrego",
+ saudacao:"Okê Arô! Salve o Caboclo!",
+ oferenda:"Frutas da mata, milho, ervas. Oferendas nas matas fechadas e virgens"
+},
+{n:"Linha de Xangô",c:'#92400E',
+ sub:"Caboclos de Xangô / Juízes Espirituais",
+ orixas:"Xangô — São Jerônimo",
+ desc:"Orixá do raio, do trovão, do fogo, da justiça, da administração e da política. Terceiro rei de Oió, sábio juiz e administrador, foi divinizado após sua morte. Xangô castiga os mentirosos e malfeitores com seu raio. Tudo que se refere a estudos, ao conhecimento especializado, ao direito, contratos e demandas judiciais pertence a Xangô. Os caboclos desta linha atuam como juízes espirituais, trabalhando no carma dos consulentes e trazendo equilíbrio. Está envolvido na melhora e no progresso social e cultural.",
+ atuacao:"Justiça, equilíbrio, demandas judiciais, administração, conhecimento especializado, trabalho kármico",
+ saudacao:"Kaô Kabecilê! Salve Xangô!",
+ oferenda:"Cerveja preta, rabada, acarajé, quiabo. Oferendas em pedreiras e pedras perto do mar"
+},
+{n:"Linha de Ciganos",c:'#D97706',
+ sub:"Espíritos do Povo Roma",
+ orixas:"Trabalham para todos os Orixás",
+ desc:"Os ciganos originalmente eram a mais desenvolvida e letrada tribo do noroeste da Índia. Sofreram séculos de perseguições na Europa, mas mantiveram vivas suas tradições passando-as oralmente para as novas gerações. A cultura cigana é muito rica em todos os aspectos: na magia, na culinária, no relacionamento — tudo muito ritualizado, sempre com muita música e muita dança. O cigano respeita o ciclo da natureza, e as fases da lua são devidamente respeitadas. São grandes oraculistas: o tarô e a quiromancia são seus aspectos mais poderosos.",
+ atuacao:"Sorte, amor, dinheiro, prosperidade, adivinhação, tarô, leitura de cartas, proteção e magia positiva",
+ saudacao:"Salve o Povo Cigano!",
+ oferenda:"Flores coloridas, perfumes, vinho, frutas, cartas de tarô. Oferendas em encruzilhadas e campos abertos"
+},
+{n:"Linha do Povo do Oriente",c:'#EA580C',
+ sub:"Espíritos elevados de cura — Mentores Espirituais",
+ orixas:"Oxalá — comandada por São João Batista",
+ desc:"A Linha do Oriente reúne todos os espíritos que amealharam grande conhecimento espiritual de qualquer lugar do planeta, com ênfase ao antigo oriente: entidades árabes, hindus, japonesas, chinesas, mongóis, egípcias, romanas, entre outras. Carregam alto nível de adiantamento evolutivo — são discretos, não gostam de falar muito e dedicam-se aos trabalhos de cura. Muitos foram versados em esoterismo, cartomancia, astronomia, medicina e ciências espirituais. Nos trabalhos de cura são capazes de grandes cirurgias espirituais e indicam tratamentos que levam ao resultado desejado.",
+ atuacao:"Cura espiritual elevada, cirurgias espirituais, equilíbrio energético, orientação doutrinária, tratamentos",
+ saudacao:"Salve o Povo do Oriente! Salve os Mestres!",
+ oferenda:"Água, incenso, velas laranjas, douradas ou brancas, cristais, óleos essenciais. Não recebem amalás"
+},
+{n:"Linha de Boiadeiros",c:'#78350F',
+ sub:"Espíritos da Boiada e do Campo",
+ orixas:"Oxóssi (alguns também citam Iansã)",
+ desc:"Reúne os espíritos que no passado trabalharam com o gado e com a agricultura. Pessoas acostumadas a trabalhar de sol a sol, de forma simples, simbolizam a força de vontade e uma fé gigantesca e inabalável. Tal qual os caboclos, conhecem muito bem a importância da natureza, trabalham com ervas, simpatias e antigas rezas fortes. É a linha de Umbanda que melhor representa o povo brasileiro e sua miscigenação. Quando baixam no terreiro, chegam dançando como catiras, fazendo gestos como se estivessem laçando algo. Gostam de fumo, cachaça, cerveja e recebem churrasco e feijão tropeiro.",
+ atuacao:"Força de vontade, fé, cura com ervas, rezas, simpatias, condução de espíritos, prosperidade no campo",
+ saudacao:"Geutá! Xetruá! Marrumba Xetro!",
+ oferenda:"Cachaça, cerveja, fumo de corda, charuto, churrasco, feijão tropeiro. Oferendas em campos e fazendas"
+},
+{n:"Linha de Marinheiros",c:'#1D4ED8',
+ sub:"Povo d'Água — Espíritos do Mar",
+ orixas:"Iemanjá",
+ desc:"Linha cujas primeiras manifestações ocorreram antes da fundação da Umbanda, no século XIX. O perfil da entidade é o do marinheiro que navegou o mundo inteiro, conheceu muitos povos e culturas, absorvendo muito conhecimento nessas andanças. Quando baixam nos terreiros, os marinheiros se apresentam andar como se estivessem bêbados — não por bebida, mas pelo costume de se manter em pé durante os solavancos das ondas do mar. Toda entidade que domina a Calunga Grande possui grandes poderes de descarrego, por poderem levar todo o mal para o fundo do mar.",
+ atuacao:"Descarrego, cura, limpeza energética profunda, trabalhos com a Calunga Grande, proteção de navegantes",
+ saudacao:"Salve o Povo do Mar! Salve os Marinheiros!",
+ oferenda:"Bebidas alcoólicas (cachaça, cerveja, rum), frutos do mar. Oferendas na praia ou beira de rios"
+},
+{n:"Linha de Malandros",c:'#9F1239',
+ sub:"Coordenada por Zé Pelintra e outros malandros",
+ orixas:"Cada malandro trabalha na regência de seu Orixá específico",
+ desc:"O arquétipo da linha dos malandros é o tradicional malandro da Lapa, no Rio de Janeiro — homem que se veste com terno branco, navalha no bolso, adora a noite, a boemia, a música, o jogo e as mulheres. São alegres e adoram conversar e dar consultas. Têm uma forma diferente de encarar os problemas, mostrando que não são tão grandes quanto parecem. Ensinam a viver de maneira suave e altiva: malandro não se estressa, resolve na ideia e na conversa, mas jamais fuge de uma boa briga. Não suportam injustiças nem que alguém se aproveite da fraqueza dos outros.",
+ atuacao:"Proteção, resolução de problemas, consultas, desmascarar mentiras, luta contra injustiças, boemia",
+ saudacao:"Salve a Malandragem!",
+ oferenda:"Cachaça, cerveja, cigarro, charuto, chapéus, bengalas, navalhas, flores. Cores: branco e preto ou vermelho"
+},
+{n:"Linha da Esquerda",c:'#334155',
+ sub:"Exu, Pomba-Gira e Exu-Mirim",
+ orixas:"Orixá Exu",
+ desc:"A linha de trabalho dos Exus é formada por espíritos que alcançaram redenção e optaram pela Umbanda para praticar a caridade. Exu e Pomba-Gira têm como função principal proteger — são a primeira, mais densa e mais importante linha de defesa de uma pessoa. Exu também é o aplicador do carma: aquele que faz com que a lei do merecimento se cumpra. EXU NÃO FAZ O MAL. Está sempre colocando nossa vida em movimento com uma única intenção: que seu protegido melhore e evolua. Pomba-Gira representa o sagrado feminino — para as mulheres é a própria energia sagrada feminina; para os homens, representa o polo feminino em sua vida.",
+ atuacao:"Proteção pessoal, abertura de caminhos, aplicação do carma, defesa contra magia negativa, guardião",
+ saudacao:"Laroyê! Salve Exu! Salve a Pomba-Gira!",
+ oferenda:"Velas vermelhas e pretas, charutos, cachaça, mel, flores vermelhas. Oferendas em encruzilhadas"
+},
+{n:"Linha de Baianos",c:'#B45309',
+ sub:"Baianos e Pretos Novos",
+ orixas:"Obaluaê — trabalham para qualquer Orixá",
+ desc:"Esta linha traz como referência todos os pais e mães de santo de outrora, feiticeiros, benzedores e rezadores, além de espíritos excluídos que souberam vencer em terra. Também simboliza o nordestino que migrou para as capitais em busca de emprego, sofrendo discriminação sem perder a esperança e o bom humor. São extremamente poderosos no desmanche da magia negativa e guerreiros incansáveis contra as kiumbas. São alegres e sorridentes, quando baixam no terreiro mudam até a atmosfera da casa. Invocam constantemente o Senhor do Bonfim e o Padre Cícero.",
+ atuacao:"Desmanche de magia negativa, cura, rezas, bênçãos, combate a kiumbas, persistência e determinação",
+ saudacao:"Salve o Povo da Bahia! É da Bahia!",
+ oferenda:"Cachaça, água de coco, cerveja, cigarro de palha, coco, cocada, rapadura, farofa de carne seca"
+}
+];
 var SETE_INTRO='Em conversa com Dona Lygia Cunha, Filha de Dona Zilméia de Moraes Cunha, neta de Zélio de Moraes e atual dirigente da Tenda Espírita Nossa Senhora da Piedade, nos afirmou que as Sete Linhas de Umbanda, segundo o Caboclo das Sete Encruzilhadas e Zélio de Moraes:';
 var SETE_D=[
 {
@@ -2283,6 +2388,15 @@ function _aplicar(u){
   }
   showView('v-dash');
   buildAll();
+  // Fechar todos os grupos da sidebar e ir para Início
+  document.querySelectorAll('.nav-group-header').forEach(function(h){
+    h.classList.remove('open');
+    var c=h.nextElementSibling;if(c&&c.classList.contains('nav-children'))c.classList.remove('open');
+  });
+  document.querySelectorAll('.sec').forEach(function(s){s.classList.remove('active');});
+  document.querySelectorAll('.ni,.nav-page-item').forEach(function(n){n.classList.remove('active');});
+  var secInicio=document.getElementById('sec-inicio');if(secInicio)secInicio.classList.add('active');
+  var navInicio=document.getElementById('nav-inicio');if(navInicio)navInicio.classList.add('active');
   setTimeout(function(){
     var s=JSON.parse(localStorage.getItem('tucic_sessao')||'{}');
     var foto=s.email?localStorage.getItem('tucic_foto_'+s.email):null;
@@ -2393,6 +2507,15 @@ function toggleGroup(h){
   var c=h.nextElementSibling;if(c&&c.classList.contains('nav-children'))c.classList.toggle('open');
 }
 
+// ===== LINHAS DO TERREIRO ACCORDION =====
+function toggleLinha(uid,hdr){
+  var body=document.getElementById(uid+'-body');
+  var chev=document.getElementById(uid+'-chev');
+  if(!body)return;
+  var open=body.style.display==='block';
+  body.style.display=open?'none':'block';
+  if(chev)chev.style.transform=open?'rotate(0deg)':'rotate(90deg)';
+}
 // ===== SETE LINHAS ACCORDION =====
 function toggleSete(uid,hdr){
   var body=document.getElementById(uid+'-body');
@@ -2486,7 +2609,31 @@ function buildAll(){
     gf.innerHTML+='<div class="gi"><div class="gn2">'+g.num+' · '+g.tipo.toUpperCase()+'</div><div class="gt">'+g.n+'</div><div class="gd">'+g.desc+'</div></div>';
   });
   var lt=document.getElementById('ln-trab'),ls=document.getElementById('ln-sete');
-  if(lt)LINHAS_D.forEach(function(l){lt.innerHTML+='<div class="li"><div class="ld" style="background:'+l.c+'"></div><div><div style="font-size:13.5px;font-weight:700;color:var(--texto);margin-bottom:2px;">'+l.n+'</div><div class="lt">'+l.d+'</div></div></div>';});
+  if(lt){
+    LINHAS_D.forEach(function(l,i){
+      var uid='lt'+i;
+      var header=
+        '<div style="background:'+l.c+';padding:10px 14px;display:flex;align-items:center;gap:10px;cursor:pointer;" onclick="toggleLinha(\''+uid+'\',this)">'
+        +'<div style="width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.35);flex-shrink:0;"></div>'
+        +'<div style="flex:1;">'
+        +'<div style="font-size:13.5px;font-weight:700;color:#fff;">'+l.n+'</div>'
+        +'<div style="font-size:11px;color:rgba(255,255,255,0.8);margin-top:1px;">'+l.sub+'</div>'
+        +'</div>'
+        +'<div id="'+uid+'-chev" style="color:#fff;font-size:11px;transition:transform .2s;">▶</div>'
+        +'</div>';
+      var body=
+        '<div id="'+uid+'-body" style="display:none;padding:13px 16px;border-top:1px solid var(--borda);">'
+        +'<div style="font-size:12px;color:var(--muted);margin-bottom:6px;"><strong style="color:var(--texto);">Orixá regente:</strong> '+l.orixas+'</div>'
+        +'<div style="font-size:13px;color:#374151;line-height:1.8;margin-bottom:10px;">'+l.desc+'</div>'
+        +'<div style="display:flex;flex-direction:column;gap:4px;border-top:1px solid var(--borda);padding-top:8px;font-size:12px;">'
+        +'<div><strong style="color:var(--azul);">Área de atuação:</strong> <span style="color:var(--muted);">'+l.atuacao+'</span></div>'
+        +'<div><strong style="color:var(--azul);">Saudação:</strong> <span style="color:var(--muted);font-style:italic;">'+l.saudacao+'</span></div>'
+        +'<div><strong style="color:var(--azul);">Oferenda:</strong> <span style="color:var(--muted);">'+l.oferenda+'</span></div>'
+        +'</div>'
+        +'</div>';
+      lt.innerHTML+='<div style="background:var(--surface);border:1.5px solid var(--borda);border-radius:10px;margin-bottom:8px;overflow:hidden;">'+header+body+'</div>';
+    });
+  }
   if(ls){
     ls.innerHTML='<div class="av blue" style="margin-bottom:18px;"><div class="avb" style="font-style:italic;line-height:1.8;">'+SETE_INTRO+'</div></div>';
     SETE_D.forEach(function(l,i){

@@ -859,39 +859,8 @@ select.finput{cursor:pointer;}
     <div id="sec-funcoes" class="sec">
       <div class="ph">Funções nas Giras 2026</div>
       <div class="ps">Abertura, defumação e responsáveis por cada gira</div>
-      <div class="av warn" style="margin-bottom:8px;"><div class="avb">Caso você falte, solicite substituto e informe ao responsável pela gira e à Mãe de Santo. Quem abre na sexta abre também no sábado de homenagem.</div></div>
-      <div class="av blue" style="margin-bottom:14px;"><div class="avb">Os recados paroquiais de sexta-feira serão passados pela equipe responsável da quarta-feira.</div></div>
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
-        <label style="font-size:12px;color:var(--muted2);white-space:nowrap;">Filtrar por pessoa:</label>
-        <select id="fn-person-filter" class="finput" style="flex:1;min-width:160px;max-width:280px;font-size:13px;" onchange="buildFuncoes()">
-          <option value="">— Todos —</option>
-          <option>ALDA</option><option>ALINE</option><option>ANA PAULA</option><option>AURORA</option>
-          <option>BARBARA</option><option>DAIANE</option><option>DALVANI</option><option>DANNY</option>
-          <option>DIONATHAN</option><option>DOUGLAS</option><option>EMANOELLE</option><option>EVANDRO</option>
-          <option>FÊ BOANOVA</option><option>GIOVANA</option><option>ISA</option><option>J. RICARDO</option>
-          <option>JULIANA</option><option>JÉSSICA</option><option>KAREN</option><option>MARCELO</option>
-          <option>MATEUS</option><option>MAYARA</option><option>MAYLLA</option><option>MONICA</option>
-          <option>MÃE GEYSA</option><option>MÃE LORENA</option><option>MÃE P. GEYSA</option>
-          <option>MÃE P. PAULA</option><option>MÃE P. TEREZINHA</option><option>MÃE P. VITÓRIA</option>
-          <option>MÃE PAULA</option><option>MÃE TEREZINHA</option><option>MÃE TROVÃO</option>
-          <option>MÃE VITÓRIA</option><option>PAI AUGUSTO</option><option>PAI CAIO</option>
-          <option>PAI HENRIQUE</option><option>PAI LUCIANO</option><option>PAI P. HENRIQUE</option>
-          <option>PAI P. LUCIANO</option><option>STEFANI</option><option>STHEFANY</option>
-          <option>TAIS REIS</option><option>TIAGO</option><option>YANN</option>
-        </select>
-        <button class="btn-sm" onclick="document.getElementById('fn-person-filter').value='';buildFuncoes();" style="font-size:12px;padding:5px 12px;">Limpar</button>
-      </div>
-      <div id="fn-person-badge" style="display:none;margin-bottom:10px;"></div>
-      <div class="tabs" id="fn-tabs">
-        <button class="tab active" onclick="fnTab('todos',this)">Todos</button>
-        <button class="tab" onclick="fnTab('sex',this)">Sexta-feira</button>
-        <button class="tab" onclick="fnTab('qua',this)">Quarta-feira</button>
-        <button class="tab" onclick="fnTab('sab',this)">Sábados / Homenagens</button>
-      </div>
-      <div id="fn-todos" class="tc active"></div>
-      <div id="fn-sex"   class="tc"></div>
-      <div id="fn-qua"   class="tc"></div>
-      <div id="fn-sab"   class="tc"></div>
+      <div class="av warn" style="margin-bottom:16px;"><div class="avb">Caso você falte, é sua responsabilidade solicitar substituto e informar ao responsável pela gira e à Mãe de Santo.</div></div>
+      <div id="funcoes-list"></div>
     </div>
 
     <!-- BEM-VINDO -->
@@ -1766,7 +1735,7 @@ var FIRMEZAS=[
 {d:'2026-12-03',g:5},{d:'2026-12-10',g:6},
 {d:'2026-12-17',g:1,r:true},{d:'2026-12-24',g:2,r:true},{d:'2026-12-31',g:3,r:true}
 ];
-var FUNCOES2=[{"d": "2026-01-21", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO E AMACI DE INICIO DE ANO", "dq": "2026-01-21", "mds": "PAI AUGUSTO", "pp": "PAI LUCIANO", "abq": "ALDA", "dfq": "BARBARA", "axq": "ALINE"}, {"d": "2026-01-23", "day": "SEXTA-FEIRA", "g": "POVO D´ÁGUA & MARINHEIRO", "ab": "ANA PAULA", "df": "MATEUS", "aux": "MÃE P. VITÓRIA"}, {"d": "2026-01-24", "day": "SÁBADO", "g": "HOMENAGEM OXÓSSI", "ab": "ANA PAULA", "df": "MATEUS", "aux": "MÃE P. VITÓRIA"}, {"d": "2026-01-28", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-01-28", "mds": "MÃE LORENA", "pp": "MÃE PAULA", "abq": "BARBARA", "dfq": "ALINE", "axq": "DALVANI"}, {"d": "2026-01-30", "day": "SEXTA-FEIRA", "g": "OGUM & MALANDROS", "ab": "MATEUS", "df": "MÃE P. VITÓRIA", "aux": "MAYLLA"}, {"d": "2026-02-04", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-02-04", "mds": "MÃE TROVÃO", "pp": "PAI HENRIQUE", "abq": "ALINE", "dfq": "DALVANI", "axq": "AURORA"}, {"d": "2026-02-06", "day": "SEXTA-FEIRA", "g": "PRETOS VELHOS", "ab": "MÃE P. VITÓRIA", "df": "MAYLLA", "aux": "EMANOELLE"}, {"d": "2026-02-07", "day": "SÁBADO", "g": "HOMENAGEM IEMANJÁ & MARINHEIROS  (Na Praia)", "ab": "MÃE P. VITÓRIA", "df": "MAYLLA", "aux": "EMANOELLE"}, {"d": "2026-02-11", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-02-11", "mds": "PAI CAIO", "pp": "MÃE VITÓRIA", "abq": "DALVANI", "dfq": "AURORA", "axq": "YANN"}, {"d": "2026-02-13", "day": "SEXTA-FEIRA", "g": "POMBAGIRA", "ab": "MAYLLA", "df": "EMANOELLE", "aux": "MÃE P. PAULA"}, {"d": "2026-02-18", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-02-18", "mds": "PAI AUGUSTO", "pp": "MÃE GEYSA", "abq": "AURORA", "dfq": "YANN", "axq": "JULIANA"}, {"d": "2026-02-20", "day": "SEXTA-FEIRA", "g": "XANGÔ & IBEJADA", "ab": "EMANOELLE", "df": "MÃE P. PAULA", "aux": "FÊ BOANOVA"}, {"d": "2026-02-21", "day": "SÁBADO", "g": "DATA RESERVADA PARA CURSOS OU EVENTOS", "ab": "EMANOELLE", "df": "MÃE P. PAULA", "aux": "FÊ BOANOVA"}, {"d": "2026-02-25", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO & BATISMO MÉDIUNS NOVOS", "dq": "2026-02-25", "mds": "MÃE LORENA", "pp": "MÃE TEREZINHA", "abq": "YANN", "dfq": "JULIANA", "axq": "EVANDRO"}, {"d": "2026-02-27", "day": "SEXTA-FEIRA", "g": "BOIADEIRO", "ab": "MÃE P. PAULA", "df": "FÊ BOANOVA", "aux": "MONICA"}, {"d": "2026-03-02", "day": "SEGUNDA-FEIRA", "g": "GIRA DE CURA", "dq": "2026-03-02", "mds": "MÃE TROVÃO", "pp": "PAI LUCIANO", "abq": "JULIANA", "dfq": "EVANDRO", "axq": "KAREN"}, {"d": "2026-03-04", "day": "QUARTA-FEIRA", "g": "HOMENAGEM POVO ORIENTE  & DESENVOLVIMENTO", "dq": "2026-03-04", "mds": "PAI CAIO", "pp": "MÃE PAULA", "abq": "EVANDRO", "dfq": "KAREN", "axq": "JÉSSICA"}, {"d": "2026-03-06", "day": "SEXTA-FEIRA", "g": "GIRA CIGANOS", "ab": "FÊ BOANOVA", "df": "MONICA", "aux": "MÃE P. GEYSA"}, {"d": "2026-03-11", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-03-11", "mds": "PAI AUGUSTO", "pp": "PAI HENRIQUE", "abq": "KAREN", "dfq": "JÉSSICA", "axq": "MARCELO"}, {"d": "2026-03-13", "day": "SEXTA-FEIRA", "g": "EXU", "ab": "MONICA", "df": "MÃE P. GEYSA", "aux": "STHEFANY"}, {"d": "2026-03-18", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-03-18", "mds": "MÃE LORENA", "pp": "MÃE VITÓRIA", "abq": "JÉSSICA", "dfq": "MARCELO", "axq": "DIONATHAN"}, {"d": "2026-03-20", "day": "SEXTA-FEIRA", "g": "OBALUAÊ/OMULU & BAIANOS", "ab": "MÃE P. GEYSA", "df": "STHEFANY", "aux": "PAI P. HENRIQUE"}, {"d": "2026-03-25", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-03-25", "mds": "MÃE TROVÃO", "pp": "MÃE GEYSA", "abq": "MARCELO", "dfq": "DIONATHAN", "axq": "DANNY"}, {"d": "2026-03-27", "day": "SEXTA-FEIRA", "g": "OXÓSSI", "ab": "STHEFANY", "df": "PAI P. HENRIQUE", "aux": "DOUGLAS"}, {"d": "2026-04-01", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-04-01", "mds": "PAI CAIO", "pp": "PAI LUCIANO", "abq": "DIONATHAN", "dfq": "DANNY", "axq": "J. RICARDO"}, {"d": "2026-04-03", "day": "SEXTA-FEIRA", "g": "PRETOS VELHOS", "ab": "PAI P. HENRIQUE", "df": "DOUGLAS", "aux": "PAI P. LUCIANO"}, {"d": "2026-04-08", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-04-08", "mds": "PAI AUGUSTO", "pp": "MÃE PAULA", "abq": "DANNY", "dfq": "J. RICARDO", "axq": "DAIANE"}, {"d": "2026-04-10", "day": "SEXTA-FEIRA", "g": "POVO D´ÁGUA & MARINHEIRO", "ab": "DOUGLAS", "df": "PAI P. LUCIANO", "aux": "JÉSSICA"}, {"d": "2026-04-15", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-04-15", "mds": "MÃE LORENA", "pp": "PAI HENRIQUE", "abq": "J. RICARDO", "dfq": "DAIANE", "axq": "TIAGO"}, {"d": "2026-04-17", "day": "SEXTA-FEIRA", "g": "POMBAGIRA", "ab": "PAI P. LUCIANO", "df": "JÉSSICA", "aux": "MATEUS"}, {"d": "2026-04-22", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-04-22", "mds": "MÃE TROVÃO", "pp": "MÃE VITÓRIA", "abq": "DAIANE", "dfq": "TIAGO", "axq": "STEFANI"}, {"d": "2026-04-24", "day": "SEXTA-FEIRA", "g": "HOMENAGEM A OGUM & GIRA DE MALANDROS", "ab": "JÉSSICA", "df": "MATEUS", "aux": "MÃE P. TEREZINHA"}, {"d": "2026-04-29", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-04-29", "mds": "PAI CAIO", "pp": "MÃE GEYSA", "abq": "TIAGO", "dfq": "STEFANI", "axq": "TAIS REIS"}, {"d": "2026-05-01", "day": "SEXTA-FEIRA", "g": "BOIADEIRO", "ab": "MATEUS", "df": "MÃE P. TEREZINHA", "aux": "MÃE P. VITÓRIA"}, {"d": "2026-05-06", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-05-06", "mds": "PAI AUGUSTO", "pp": "PAI LUCIANO", "abq": "STEFANI", "dfq": "TAIS REIS", "axq": "GIOVANA"}, {"d": "2026-05-08", "day": "SEXTA-FEIRA", "g": "EXU", "ab": "MÃE P. TEREZINHA", "df": "MÃE P. VITÓRIA", "aux": "MAYLLA"}, {"d": "2026-05-13", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-05-13", "mds": "MÃE LORENA", "pp": "MÃE PAULA", "abq": "TAIS REIS", "dfq": "GIOVANA", "axq": "BARBARA"}, {"d": "2026-05-15", "day": "SEXTA-FEIRA", "g": "OBALUAÊ/OMULU & BAIANOS", "ab": "MÃE P. VITÓRIA", "df": "MAYLLA", "aux": "MAYARA"}, {"d": "2026-05-16", "day": "SÁBADO", "g": "HOMENAGEM PRETOS VELHOS", "ab": "MAYLLA", "df": "MAYARA", "aux": "MÃE P. PAULA"}, {"d": "2026-05-20", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-05-20", "mds": "MÃE TROVÃO", "pp": "PAI HENRIQUE", "abq": "GIOVANA", "dfq": "BARBARA", "axq": "ALINE"}, {"d": "2026-05-22", "day": "SEXTA-FEIRA", "g": "OXÓSSI", "ab": "MAYARA", "df": "MÃE P. PAULA", "aux": "FÊ BOANOVA"}, {"d": "2026-05-27", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-05-27", "mds": "PAI CAIO", "pp": "MÃE VITÓRIA", "abq": "BARBARA", "dfq": "ALINE", "axq": "DALVANI"}, {"d": "2026-05-29", "day": "SEXTA-FEIRA", "g": "OGUM & MALANDROS", "ab": "MÃE P. PAULA", "df": "FÊ BOANOVA", "aux": "MONICA"}, {"d": "2026-05-30", "day": "SÁBADO", "g": "HOMENAGEM CIGANOS", "ab": "FÊ BOANOVA", "df": "MONICA", "aux": "MÃE P. GEYSA"}, {"d": "2026-06-03", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-06-03", "mds": "PAI AUGUSTO", "pp": "MÃE GEYSA", "abq": "ALINE", "dfq": "DALVANI", "axq": "AURORA"}, {"d": "2026-06-05", "day": "SEXTA-FEIRA", "g": "PRETOS VELHOS", "ab": "MONICA", "df": "MÃE P. GEYSA", "aux": "STHEFANY"}, {"d": "2026-06-10", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-06-10", "mds": "MÃE LORENA", "pp": "PAI LUCIANO", "abq": "DALVANI", "dfq": "AURORA", "axq": "YANN"}, {"d": "2026-06-12", "day": "SEXTA-FEIRA", "g": "POVO D´ÁGUA & MARINHEIRO", "ab": "MÃE P. GEYSA", "df": "STHEFANY", "aux": "PAI P. HENRIQUE"}, {"d": "2026-06-13", "day": "SÁBADO", "g": "HOMENAGEM EXU", "ab": "STHEFANY", "df": "PAI P. HENRIQUE", "aux": "DOUGLAS"}, {"d": "2026-06-17", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-06-17", "mds": "MÃE TROVÃO", "pp": "MÃE PAULA", "abq": "AURORA", "dfq": "YANN", "axq": "JULIANA"}, {"d": "2026-06-19", "day": "SEXTA-FEIRA", "g": "CIGANOS", "ab": "PAI P. HENRIQUE", "df": "DOUGLAS", "aux": "PAI P. LUCIANO"}, {"d": "2026-06-24", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-06-24", "mds": "PAI CAIO", "pp": "PAI HENRIQUE", "abq": "YANN", "dfq": "JULIANA", "axq": "J. RICARDO"}, {"d": "2026-06-26", "day": "SEXTA-FEIRA", "g": "HOMENAGEM A XANGÔ & GIRA DE IBEJADA", "ab": "DOUGLAS", "df": "PAI P. LUCIANO", "aux": "JÉSSICA"}, {"d": "2026-07-01", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-07-01", "mds": "PAI AUGUSTO", "pp": "MÃE VITÓRIA", "abq": "JULIANA", "dfq": "J. RICARDO", "axq": "ISA"}, {"d": "2026-07-03", "day": "SEXTA-FEIRA", "g": "POMBAGIRA", "ab": "PAI P. LUCIANO", "df": "JÉSSICA", "aux": "MATEUS"}, {"d": "2026-07-04", "day": "SÁBADO", "g": "HOMENAGEM MALANDRO MIGUEL", "ab": "JÉSSICA", "df": "MATEUS", "aux": "MÃE P. TEREZINHA"}, {"d": "2026-07-08", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-07-08", "mds": "MÃE LORENA", "pp": "MÃE GEYSA", "abq": "J. RICARDO", "dfq": "ISA", "axq": "BARBARA"}, {"d": "2026-07-10", "day": "SEXTA-FEIRA", "g": "BOIADEIRO", "ab": "MATEUS", "df": "MÃE P. TEREZINHA", "aux": "MÃE P. VITÓRIA"}, {"d": "2026-07-15", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-07-15", "mds": "MÃE TROVÃO", "pp": "PAI LUCIANO", "abq": "ISA", "dfq": "BARBARA", "axq": "MARCELO"}, {"d": "2026-07-17", "day": "SEXTA-FEIRA", "g": "OXÓSSI", "ab": "MÃE P. TEREZINHA", "df": "MÃE P. VITÓRIA", "aux": "MAYLLA"}, {"d": "2026-07-22", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-07-22", "mds": "PAI CAIO", "pp": "MÃE PAULA", "abq": "BARBARA", "dfq": "MARCELO", "axq": "DIONATHAN"}, {"d": "2026-07-24", "day": "SEXTA-FEIRA", "g": "HOMENAGEM A NANÃ & GIRA DE MARINHEIRO", "ab": "MÃE P. VITÓRIA", "df": "MAYLLA", "aux": "MATEUS"}, {"d": "2026-07-29", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO & BATISMO MÉDIUNS NOVOS", "dq": "2026-07-29", "mds": "PAI AUGUSTO", "pp": "PAI HENRIQUE", "abq": "MARCELO", "dfq": "DIONATHAN", "axq": "DANNY"}, {"d": "2026-07-31", "day": "SEXTA-FEIRA", "g": "OBALUAÊ/OMULU & BAIANOS", "ab": "MAYLLA", "df": "MATEUS", "aux": "MÃE P. PAULA"}, {"d": "2026-08-01", "day": "SÁBADO", "g": "GIRA PAI CAIO - PRETO VELHO - HOMENAGEM PAI BARNABE", "ab": "MATEUS", "df": "MÃE P. PAULA", "aux": "FÊ BOANOVA"}, {"d": "2026-08-05", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-08-05", "mds": "MÃE LORENA", "pp": "MÃE VITÓRIA", "abq": "DIONATHAN", "dfq": "DANNY", "axq": "J. RICARDO"}, {"d": "2026-08-07", "day": "SEXTA-FEIRA", "g": "EXU", "ab": "MÃE P. PAULA", "df": "FÊ BOANOVA", "aux": "MONICA"}, {"d": "2026-08-12", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-08-12", "mds": "MÃE TROVÃO", "pp": "MÃE GEYSA", "abq": "DANNY", "dfq": "J. RICARDO", "axq": "DAIANE"}, {"d": "2026-08-14", "day": "SEXTA-FEIRA", "g": "OGUM & MALANDROS", "ab": "FÊ BOANOVA", "df": "MONICA", "aux": "MÃE P. GEYSA"}, {"d": "2026-08-15", "day": "SÁBADO", "g": "HOMENAGEM POMBAGIRA", "ab": "MONICA", "df": "MÃE P. GEYSA", "aux": "STHEFANY"}, {"d": "2026-08-19", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-08-19", "mds": "PAI CAIO", "pp": "PAI LUCIANO", "abq": "J. RICARDO", "dfq": "DAIANE", "axq": "TIAGO"}, {"d": "2026-08-21", "day": "SEXTA-FEIRA", "g": "PRETOS VELHOS", "ab": "MÃE P. GEYSA", "df": "STHEFANY", "aux": "PAI P. HENRIQUE"}, {"d": "2026-08-26", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-08-26", "mds": "PAI AUGUSTO", "pp": "MÃE PAULA", "abq": "DAIANE", "dfq": "TIAGO", "axq": "GIOVANA"}, {"d": "2026-08-28", "day": "SEXTA-FEIRA", "g": "HOMENAGEM BOIADEIRO", "ab": "STHEFANY", "df": "PAI P. HENRIQUE", "aux": "DOUGLAS"}, {"d": "2026-09-02", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-09-02", "mds": "MÃE LORENA", "pp": "PAI HENRIQUE", "abq": "TIAGO", "dfq": "GIOVANA", "axq": "TAIS REIS"}, {"d": "2026-09-04", "day": "SEXTA-FEIRA", "g": "POVO D´ÁGUA & MARINHEIRO", "ab": "PAI P. HENRIQUE", "df": "DOUGLAS", "aux": "PAI P. LUCIANO"}, {"d": "2026-09-09", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-09-09", "mds": "MÃE TROVÃO", "pp": "MÃE VITÓRIA", "abq": "GIOVANA", "dfq": "TAIS REIS", "axq": "STEFANI"}, {"d": "2026-09-11", "day": "SEXTA-FEIRA", "g": "POMBAGIRA", "ab": "DOUGLAS", "df": "PAI P. LUCIANO", "aux": "JÉSSICA"}, {"d": "2026-09-16", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-09-16", "mds": "PAI CAIO", "pp": "MÃE GEYSA", "abq": "TAIS REIS", "dfq": "STEFANI", "axq": "BARBARA"}, {"d": "2026-09-18", "day": "SEXTA-FEIRA", "g": "CIGANOS", "ab": "PAI P. LUCIANO", "df": "JÉSSICA", "aux": "MÃE P. TEREZINHA"}, {"d": "2026-09-23", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-09-23", "mds": "PAI AUGUSTO", "pp": "PAI LUCIANO", "abq": "STEFANI", "dfq": "BARBARA", "axq": "ALINE"}, {"d": "2026-09-25", "day": "SEXTA-FEIRA", "g": "HOMENAGEM IBEJADA - RECOLHIDA CRUZAMENTO & 7 LINHAS", "ab": "JÉSSICA", "df": "MÃE P. TEREZINHA", "aux": "MATEUS"}, {"d": "2026-09-30", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO (SE NÃO HOUVER 7 LINHAS", "dq": "2026-09-30", "mds": "MÃE LORENA", "pp": "MÃE PAULA", "abq": "BARBARA", "dfq": "ALINE", "axq": "DALVANI"}, {"d": "2026-10-02", "day": "SEXTA-FEIRA", "g": "OXÓSSI - SAÍDA 7 LINHAS (SE HOUVER)", "ab": "MÃE P. TEREZINHA", "df": "MATEUS", "aux": "MÃE P. VITÓRIA"}, {"d": "2026-10-07", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-10-07", "mds": "MÃE TROVÃO", "pp": "PAI HENRIQUE", "abq": "ALINE", "dfq": "DALVANI", "axq": "AURORA"}, {"d": "2026-10-09", "day": "SEXTA-FEIRA", "g": "HOMENAGEM À OXUM & GIRA DE POMBAGIRA", "ab": "MATEUS", "df": "MÃE P. VITÓRIA", "aux": "MAYLLA"}, {"d": "2026-10-10", "day": "SÁBADO", "g": "AMACI NA CACHOEIRA", "ab": "MÃE P. VITÓRIA", "df": "MAYLLA", "aux": "MÃE P. PAULA"}, {"d": "2026-10-14", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-10-14", "mds": "PAI CAIO", "pp": "MÃE VITÓRIA", "abq": "DALVANI", "dfq": "AURORA", "axq": "YANN"}, {"d": "2026-10-16", "day": "SEXTA-FEIRA", "g": "EXU", "ab": "EMANOELLE", "df": "MÃE P. PAULA", "aux": "FÊ BOANOVA"}, {"d": "2026-10-21", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-10-21", "mds": "PAI AUGUSTO", "pp": "MÃE GEYSA", "abq": "AURORA", "dfq": "YANN", "axq": "JULIANA"}, {"d": "2026-10-23", "day": "SEXTA-FEIRA", "g": "BOIADEIRO", "ab": "MÃE P. PAULA", "df": "FÊ BOANOVA", "aux": "MONICA"}, {"d": "2026-10-28", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-10-28", "mds": "MÃE LORENA", "pp": "PAI LUCIANO", "abq": "YANN", "dfq": "JULIANA", "axq": "J. RICARDO"}, {"d": "2026-10-30", "day": "SEXTA-FEIRA", "g": "OGUM & MALANDROS", "ab": "FÊ BOANOVA", "df": "MONICA", "aux": "MÃE P. GEYSA"}, {"d": "2026-11-04", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-11-04", "mds": "MÃE TROVÃO", "pp": "MÃE PAULA", "abq": "JULIANA", "dfq": "J. RICARDO", "axq": "KAREN"}, {"d": "2026-11-06", "day": "SEXTA-FEIRA", "g": "HOMENAGEM OMULU/OBALUAÊ &  BAIANOS", "ab": "MONICA", "df": "MÃE P. GEYSA", "aux": "STHEFANY"}, {"d": "2026-11-11", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-11-11", "mds": "PAI CAIO", "pp": "PAI HENRIQUE", "abq": "J. RICARDO", "dfq": "KAREN", "axq": "BARBARA"}, {"d": "2026-11-13", "day": "SEXTA-FEIRA", "g": "PRETOS VELHOS", "ab": "MÃE P. GEYSA", "df": "STHEFANY", "aux": "PAI P. HENRIQUE"}, {"d": "2026-11-18", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-11-18", "mds": "PAI AUGUSTO", "pp": "MÃE VITÓRIA", "abq": "KAREN", "dfq": "BARBARA", "axq": "MARCELO"}, {"d": "2026-11-20", "day": "SEXTA-FEIRA", "g": "POVO D´ÁGUA & MARINHEIRO", "ab": "STHEFANY", "df": "PAI P. HENRIQUE", "aux": "DOUGLAS"}, {"d": "2026-11-25", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO & BATISMO MÉDIUNS NOVOS", "dq": "2026-11-25", "mds": "MÃE LORENA", "pp": "MÃE GEYSA", "abq": "BARBARA", "dfq": "MARCELO", "axq": "DIONATHAN"}, {"d": "2026-11-27", "day": "SEXTA-FEIRA", "g": "POMBAGIRA", "ab": "PAI P. HENRIQUE", "df": "DOUGLAS", "aux": "PAI P. LUCIANO"}, {"d": "2026-12-02", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-12-02", "mds": "MÃE TROVÃO", "pp": "PAI LUCIANO", "abq": "MARCELO", "dfq": "DIONATHAN", "axq": "DANNY"}, {"d": "2026-12-04", "day": "SEXTA-FEIRA", "g": "HOMENAGEM IANSÃ /OBÁ & GIRA DE POMBAGIRA", "ab": "DOUGLAS", "df": "PAI P. LUCIANO", "aux": "MAYARA"}, {"d": "2026-12-09", "day": "QUARTA-FEIRA", "g": "GIRA DE DE DESENVOLVIMENTO", "dq": "2026-12-09", "mds": "PAI CAIO", "pp": "MÃE PAULA", "abq": "DIONATHAN", "dfq": "DANNY", "axq": "J. RICARDO"}, {"d": "2026-12-11", "day": "SEXTA-FEIRA", "g": "EXU", "ab": "PAI P. LUCIANO", "df": "MAYARA", "aux": "MÃE P. TEREZINHA"}];
+var FUNCOES=[{d:'2026-01-21',gira:'Gira de Desenvolvimento & Amaci',abertura:'Ana Paula',def:'Mateus',auxDef:'Mãe P. Vitória'},{d:'2026-01-23',gira:"Povo d'Água & Marinheiro",abertura:'Ana Paula',def:'Mateus',auxDef:'Mãe P. Vitória'},{d:'2026-01-30',gira:'Ogum & Malandros',abertura:'Mateus',def:'Mãe P. Vitória',auxDef:'Maylla'},{d:'2026-02-06',gira:'Pretos Velhos',abertura:'Mãe P. Vitória',def:'Maylla',auxDef:'Emanoelle'},{d:'2026-02-13',gira:'Pombagira',abertura:'Maylla',def:'Emanoelle',auxDef:'Mãe P. Paula'},{d:'2026-02-20',gira:'Xangô & Ibejada',abertura:'Emanoelle',def:'Mãe P. Paula',auxDef:'Fê Boanova'},{d:'2026-02-27',gira:'Boiadeiro',abertura:'Mãe P. Paula',def:'Fê Boanova',auxDef:'Monica'},{d:'2026-03-02',gira:'Gira de Cura',abertura:'Juliana',def:'Evandro',auxDef:'Karen'},{d:'2026-03-06',gira:'Ciganos',abertura:'Fê Boanova',def:'Monica',auxDef:'Mãe P. Geysa'},{d:'2026-03-13',gira:'Exu',abertura:'Monica',def:'Mãe P. Geysa',auxDef:'Sthefany'},{d:'2026-03-20',gira:'Obaluaê/Omulu & Baianos',abertura:'Mãe P. Geysa',def:'Sthefany',auxDef:'Pai P. Henrique'},{d:'2026-03-27',gira:'Oxóssi',abertura:'Sthefany',def:'Pai P. Henrique',auxDef:'Douglas'},{d:'2026-04-03',gira:'Pretos Velhos',abertura:'Pai P. Henrique',def:'Douglas',auxDef:'Pai P. Luciano'},{d:'2026-04-10',gira:"Povo d'Água & Marinheiro",abertura:'Douglas',def:'Pai P. Luciano',auxDef:'Jéssica'},{d:'2026-04-17',gira:'Xangô & Ibejada',abertura:'Pai P. Luciano',def:'Jéssica',auxDef:'Mateus'},{d:'2026-04-24',gira:'Homenagem Ogum & Malandros',abertura:'Jéssica',def:'Mateus',auxDef:'Mãe P. Terezinha'}];
 
 // ===== ESTADO =====
 var modoEdicao=false,isAdmin=false,built=false;
@@ -2099,167 +2068,12 @@ function buildFirmezas(){
   var gg=document.getElementById('grupos-grid');if(!gg)return;gg.innerHTML='';
   for(var g=1;g<=6;g++){var mb=(GRUPOS[g]||[]).map(function(m){return '<span class="membro-tag">'+m+'</span>';}).join('');gg.innerHTML+='<div class="rc"><div style="font-size:13px;font-weight:700;color:var(--azul);margin-bottom:10px;">Grupo '+g+'</div><div class="grupo-membros">'+mb+'</div></div>';}
 }
-function fnTab(id,btn){
-  ['todos','sex','qua','sab'].forEach(function(k){var el=document.getElementById('fn-'+k);if(el)el.classList.remove('active');});
-  document.querySelectorAll('#fn-tabs .tab').forEach(function(b){b.classList.remove('active');});
-  var target=document.getElementById('fn-'+id);if(target)target.classList.add('active');
-  if(btn)btn.classList.add('active');
-}
-function _cap(s){return s?s.charAt(0)+s.slice(1).toLowerCase():'';}
-function _tit(s){if(!s)return '';return s.split(' ').map(function(w){return w.charAt(0).toUpperCase()+w.slice(1).toLowerCase();}).join(' ');}
-function _badge(day){
-  if(!day)return '';
-  var d=day.toUpperCase();
-  if(d==='SEXTA-FEIRA')return '<span style="font-size:10px;padding:2px 8px;border-radius:20px;background:#E6F1FB;color:#185FA5;font-weight:500;">Sexta</span>';
-  if(d==='SÁBADO')return '<span style="font-size:10px;padding:2px 8px;border-radius:20px;background:#FAEEDA;color:#633806;font-weight:500;">Sábado</span>';
-  if(d==='QUARTA-FEIRA')return '<span style="font-size:10px;padding:2px 8px;border-radius:20px;background:#EAF3DE;color:#27500A;font-weight:500;">Quarta</span>';
-  if(d==='SEGUNDA-FEIRA')return '<span style="font-size:10px;padding:2px 8px;border-radius:20px;background:#EDE9FE;color:#6D28D9;font-weight:500;">Segunda</span>';
-  return '<span style="font-size:10px;padding:2px 8px;border-radius:20px;background:var(--surface2);color:var(--muted);font-weight:500;">'+_tit(day)+'</span>';
-}
-function _roleLabel(role){
-  var map={ab:'Abertura',df:'Defumação',aux:'Aux. Defumação',mds:'Mds Responsável',pp:'PP/MP Responsável',abq:'Abertura',dfq:'Defumação',axq:'Aux. Defumação'};
-  return map[role]||role;
-}
-var _MESES_FN=['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
-function _matchPerson(val, person){
-  if(!person||!val) return false;
-  return val.toUpperCase().trim()===person.toUpperCase().trim();
-}
-function _highlightCell(val, person){
-  var t=_tit(val||'—');
-  if(person && _matchPerson(val, person)){
-    return '<strong style="color:var(--azul);background:var(--azul-bg);padding:1px 5px;border-radius:4px;">'+t+'</strong>';
-  }
-  return t;
-}
-function _rowMatchesPerson(f, person){
-  if(!person) return true;
-  var fields=['ab','df','aux','mds','pp','abq','dfq','axq'];
-  for(var i=0;i<fields.length;i++){
-    if(_matchPerson(f[fields[i]]||'', person)) return true;
-  }
-  return false;
-}
-function _getRoles(f, person){
-  // Returns array of role labels where this person appears
-  var map={ab:'Abertura (Gira)',df:'Defumação (Gira)',aux:'Aux. Defumação (Gira)',mds:'Mds Responsável (Qua)',pp:'PP/MP Responsável (Qua)',abq:'Abertura (Qua)',dfq:'Defumação (Qua)',axq:'Aux. Defumação (Qua)'};
-  var roles=[];
-  Object.keys(map).forEach(function(k){if(_matchPerson(f[k]||'',person)) roles.push(map[k]);});
-  return roles;
-}
 function buildFuncoes(){
-  var elTodos=document.getElementById('fn-todos');
-  var elSex=document.getElementById('fn-sex');
-  var elQua=document.getElementById('fn-qua');
-  var elSab=document.getElementById('fn-sab');
-  var badge=document.getElementById('fn-person-badge');
-  if(!elTodos)return;
-
-  var sel=document.getElementById('fn-person-filter');
-  var person=sel?sel.value.trim():'';
-
-  // Update badge
-  if(badge){
-    if(person){
-      badge.style.display='block';
-      badge.innerHTML='<span style="display:inline-flex;align-items:center;gap:6px;background:var(--azul-bg);color:var(--azul);border:1px solid var(--borda-azul);border-radius:20px;padding:4px 12px;font-size:12px;font-weight:500;">Mostrando funções de: '+_tit(person)+'</span>';
-    } else {
-      badge.style.display='none';
-      badge.innerHTML='';
-    }
-  }
-
-  var htmlTodos='',htmlSex='',htmlQua='',htmlSab='';
-  var curMonTodos=-1,curMonSex=-1,curMonQua=-1,curMonSab=-1;
-  var cntTodos=0,cntSex=0,cntQua=0,cntSab=0;
-
-  var tblHead='<div style="overflow-x:auto;"><table class="at">';
-  var tblSexHead=tblHead+'<thead><tr><th>Data</th><th>Gira</th><th>Abertura</th><th>Defumação</th><th>Aux. Defumação</th></tr></thead><tbody>';
-  var tblQuaHead=tblHead+'<thead><tr><th>Data</th><th>Gira</th><th>Mds Resp.</th><th>PP/MP Resp.</th><th>Abertura</th><th>Defumação</th><th>Aux.</th></tr></thead><tbody>';
-  var tblSabHead=tblHead+'<thead><tr><th>Data</th><th>Evento</th><th>Abertura</th><th>Defumação</th><th>Aux. Defumação</th></tr></thead><tbody>';
-
-  htmlSex+=tblSexHead; htmlQua+=tblQuaHead; htmlSab+=tblSabHead;
-
-  FUNCOES2.forEach(function(f){
-    var p=f.d.split('-');
-    var dd=p[2]+'/'+p[1];
-    var mon=parseInt(p[1])-1;
-    var monLabel='<div style="font-size:11px;font-weight:500;letter-spacing:.5px;text-transform:uppercase;color:var(--muted2);padding:12px 0 6px;border-bottom:0.5px solid var(--borda);margin-bottom:8px;">'+_MESES_FN[mon]+'</div>';
-    var dayUp=(f.day||'').toUpperCase();
-    var isSex=dayUp==='SEXTA-FEIRA';
-    var isSab=dayUp==='SÁBADO';
-
-    var matchesPerson=_rowMatchesPerson(f,person);
-
-    // --- TODOS ---
-    if(matchesPerson){
-      if(mon!==curMonTodos){curMonTodos=mon;htmlTodos+=monLabel;}
-      cntTodos++;
-      var roles=person?_getRoles(f,person):[];
-      var roleBadge=roles.length?'<div style="margin-top:7px;display:flex;flex-wrap:wrap;gap:4px;">'+roles.map(function(r){return '<span style="font-size:10px;padding:2px 8px;border-radius:20px;background:var(--azul-bg);color:var(--azul);border:1px solid var(--borda-azul);font-weight:500;">'+r+'</span>';}).join('')+'</div>':'';
-      var card='<div style="background:var(--surface);border:0.5px solid var(--borda);border-radius:10px;padding:11px 13px;margin-bottom:7px;'+(person?'border-left:3px solid var(--azul);':'')+'">'; 
-      card+='<div style="display:flex;align-items:center;gap:7px;margin-bottom:8px;flex-wrap:wrap;">';
-      card+='<span style="font-size:13px;font-weight:500;color:var(--azul);">'+dd+'</span>';
-      card+=_badge(f.day);
-      card+='<span style="font-size:12px;color:var(--text);">'+_tit(f.g)+'</span>';
-      card+='</div>';
-      if(f.ab||f.df||f.aux){
-        card+='<div style="font-size:11px;font-weight:500;color:var(--muted2);margin-bottom:6px;">Gira Principal</div>';
-        card+='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;">';
-        card+='<div><div style="font-size:10px;color:var(--muted2);">Abertura</div><div style="font-size:12px;font-weight:500;">'+_highlightCell(f.ab,person)+'</div></div>';
-        card+='<div><div style="font-size:10px;color:var(--muted2);">Defumação</div><div style="font-size:12px;font-weight:500;">'+_highlightCell(f.df,person)+'</div></div>';
-        card+='<div><div style="font-size:10px;color:var(--muted2);">Aux. Defumação</div><div style="font-size:12px;font-weight:500;">'+_highlightCell(f.aux,person)+'</div></div>';
-        card+='</div>';
-      }
-      if(f.dq){
-        var pq=f.dq.split('-');
-        card+='<div style="border-top:0.5px solid var(--borda);margin:9px 0;"></div>';
-        card+='<div style="font-size:11px;font-weight:500;color:var(--muted2);margin-bottom:6px;">Quarta-feira ('+pq[2]+'/'+pq[1]+')</div>';
-        card+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:5px;">';
-        card+='<div><div style="font-size:10px;color:var(--muted2);">Mds Responsável</div><div style="font-size:12px;font-weight:500;">'+_highlightCell(f.mds,person)+'</div></div>';
-        card+='<div><div style="font-size:10px;color:var(--muted2);">PP/MP Responsável</div><div style="font-size:12px;font-weight:500;">'+_highlightCell(f.pp,person)+'</div></div>';
-        card+='</div>';
-        card+='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;">';
-        card+='<div><div style="font-size:10px;color:var(--muted2);">Abertura</div><div style="font-size:12px;font-weight:500;">'+_highlightCell(f.abq,person)+'</div></div>';
-        card+='<div><div style="font-size:10px;color:var(--muted2);">Defumação</div><div style="font-size:12px;font-weight:500;">'+_highlightCell(f.dfq,person)+'</div></div>';
-        card+='<div><div style="font-size:10px;color:var(--muted2);">Aux.</div><div style="font-size:12px;font-weight:500;">'+_highlightCell(f.axq,person)+'</div></div>';
-        card+='</div>';
-      }
-      if(roleBadge) card+=roleBadge;
-      card+='</div>';
-      htmlTodos+=card;
-    }
-
-    // --- SEXTA ---
-    if(isSex && matchesPerson){
-      if(mon!==curMonSex){curMonSex=mon;htmlSex+='<tr><td colspan="5" style="font-size:11px;font-weight:500;letter-spacing:.5px;text-transform:uppercase;color:var(--muted2);padding:10px 8px 4px;border-bottom:none;">'+_MESES_FN[mon]+'</td></tr>';}
-      cntSex++;
-      htmlSex+='<tr><td><strong style="color:var(--azul);">'+dd+'</strong></td><td>'+_tit(f.g)+'</td><td>'+_highlightCell(f.ab,person)+'</td><td>'+_highlightCell(f.df,person)+'</td><td>'+_highlightCell(f.aux,person)+'</td></tr>';
-    }
-
-    // --- QUARTA ---
-    if(f.dq && matchesPerson){
-      var pq2=f.dq.split('-');var ddq=pq2[2]+'/'+pq2[1];var monq=parseInt(pq2[1])-1;
-      if(monq!==curMonQua){curMonQua=monq;htmlQua+='<tr><td colspan="7" style="font-size:11px;font-weight:500;letter-spacing:.5px;text-transform:uppercase;color:var(--muted2);padding:10px 8px 4px;border-bottom:none;">'+_MESES_FN[monq]+'</td></tr>';}
-      cntQua++;
-      htmlQua+='<tr><td><strong style="color:var(--azul);">'+ddq+'</strong></td><td>'+_tit(f.g)+'</td><td>'+_highlightCell(f.mds,person)+'</td><td>'+_highlightCell(f.pp,person)+'</td><td>'+_highlightCell(f.abq,person)+'</td><td>'+_highlightCell(f.dfq,person)+'</td><td>'+_highlightCell(f.axq,person)+'</td></tr>';
-    }
-
-    // --- SÁBADO ---
-    if(isSab && matchesPerson){
-      if(mon!==curMonSab){curMonSab=mon;htmlSab+='<tr><td colspan="5" style="font-size:11px;font-weight:500;letter-spacing:.5px;text-transform:uppercase;color:var(--muted2);padding:10px 8px 4px;border-bottom:none;">'+_MESES_FN[mon]+'</td></tr>';}
-      cntSab++;
-      htmlSab+='<tr><td><strong style="color:var(--azul);">'+dd+'</strong></td><td>'+_tit(f.g)+'</td><td>'+_highlightCell(f.ab,person)+'</td><td>'+_highlightCell(f.df,person)+'</td><td>'+_highlightCell(f.aux,person)+'</td></tr>';
-    }
-  });
-
-  var empty='<div style="color:var(--muted2);font-size:13px;padding:20px 0;text-align:center;">Nenhuma função encontrada'+( person?' para '+_tit(person):'')+' nesta categoria.</div>';
-  elTodos.innerHTML=cntTodos?htmlTodos:empty;
-  elSex.innerHTML=(cntSex?htmlSex+'</tbody></table></div>':empty);
-  elQua.innerHTML=(cntQua?htmlQua+'</tbody></table></div>':empty);
-  elSab.innerHTML=(cntSab?htmlSab+'</tbody></table></div>':empty);
+  var el=document.getElementById('funcoes-list');if(!el)return;
+  var html='<div style="overflow-x:auto;"><table class="at"><thead><tr><th>Data</th><th>Gira</th><th>Abertura</th><th>Defumação</th><th>Aux. Defumação</th></tr></thead><tbody>';
+  FUNCOES.forEach(function(f){var p=f.d.split('-');html+='<tr><td><strong style="color:var(--azul);">'+p[2]+'/'+p[1]+'</strong></td><td>'+f.gira+'</td><td>'+f.abertura+'</td><td>'+f.def+'</td><td>'+f.auxDef+'</td></tr>';});
+  el.innerHTML=html+'</tbody></table></div>';
 }
-function _cap(s){return s?s.charAt(0)+s.slice(1).toLowerCase():'';}
 
 // ===== PÁGINAS =====
 function novaPagina(){paginaEditando=null;document.getElementById('page-titulo').value='';document.getElementById('page-icone').value='📄';document.getElementById('editor').innerHTML='';document.getElementById('editor-area').style.display='block';document.getElementById('editor').focus();}

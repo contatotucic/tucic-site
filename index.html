@@ -1017,7 +1017,7 @@ select.finput{cursor:pointer;}
 
     <!-- ORIXÁS -->
     <div id="sec-orixas" class="sec">
-      <div class="ph">Orixás Cultuados no TUCIC</div><div class="ps">Clique em um orixá para ver a saudação completa</div>
+      <div class="ph">Orixás Cultuados no TUCIC</div><div class="ps">Clique em um orixá para ver descrição, características, correspondências e lenda</div>
       <div class="og" id="og"></div>
       <div id="odet" style="display:none;margin-top:14px;"></div>
     </div>
@@ -1509,7 +1509,338 @@ var _a='@',_d='.com';
 var USERS={};
 USERS['admin'+_a+'tucic'+_d]={pass:'tucic2024',name:'Mãe Rosi de Oxum',role:'ADMINISTRADORA',ini:'MR',admin:true};
 USERS['membro'+_a+'tucic'+_d]={pass:'tucic2024',name:'Membro TUCIC',role:'MEMBRO',ini:'MT',admin:false};
-var ORIXAS=[{n:'Oxalá',s:'Êbaba · Êpa Baba',cor:'#94A3B8',sig:'O senhor realiza · Obrigado Pai'},{n:'Ogum',s:'Patacori Ogum · Ogunhê',cor:'#DC2626',sig:'Salve o cortador de caminhos'},{n:'Xangô',s:'Caô Cabesilê',cor:'#92400E',sig:'Permita-me vê-lo, Majestade'},{n:'Oxóssi',s:'Okê Arô Oxóssi',cor:'#15803D',sig:'Dê seu brado, Majestade'},{n:'Obaluaê/Omulu',s:'Atotô',cor:'#334155',sig:'Silêncio, ele está entre nós'},{n:'Iemanjá',s:'Odôcy Iabá',cor:'#0EA5E9',sig:'Salve a Senhora das Águas'},{n:'Oxum',s:'Ora ie ie Oxum',cor:'#1D4ED8',sig:'Olha por nós mãezinha'},{n:'Iansã',s:'Eparrei Oiá',cor:'#CA8A04',sig:'Salve o raio, Iansã'},{n:'Nanã',s:'Saluba Nanã',cor:'#7C3AED',sig:'Salve a Mãe de todas as Mães'},{n:'Ibeji',s:'Omi Ibejada',cor:'#EC4899',sig:'Ele é dois'},{n:'Oba',s:'Oba Xirê',cor:'#BE123C',sig:'Eu saúdo o seu conhecimento'}];
+var ORIXAS=[
+{
+  n:'Oxalá',
+  s:'Babá Okê · Êpa Babá · Exê Uepê Babá',
+  cor:'#94A3B8',
+  sig:'Salve o Pai · Oxalá é meu Pai · Salve o Pai (com admiração)',
+  sinc:'Jesus Cristo',
+  data:'25 de dezembro',
+  elem:'Ar e Éter',
+  chacra:'Coronário',
+  num:'10',
+  dia:'Sexta-feira',
+  cor_guia:'Branca leitosa',
+  cor_vela:'Branca',
+  pedra:'Diamante ou cristal',
+  metal:'Ouro branco, prata e platina',
+  astro:'Sol',
+  nota:'Mi',
+  area:'Paz, fé, progresso e saúde',
+  bebida:'Suco de uva, água e vinho doce',
+  amala:'Milho branco, arroz com mel, canjica doce',
+  frutas:'Uva verde, pera, damasco, figo, polpa de coco, pêssego branco',
+  flores:'Girassol, lírio branco e todas as flores brancas',
+  ervas:'Manjericão, alfazema, arruda, erva cidreira, hortelã, alevante, salva, folhas de laranjeira, folhas de algodoeiro',
+  local:'Alto de morro, campo gramado, locais sagrados',
+  animais:'Caramujo, pomba branca e coruja branca',
+  instrum:'Opaxorô (Cajado)',
+  desc:'A palavra Oxalá significa "O Grande Orixá" ou "Senhor da Luz Divina". Considerado o Grande Pai, o mais velho de todos os Orixás e pai de todos os seres do céu e da terra. Sua cor é o branco, que é a soma de todas as cores. Oxalá atua em todos os campos, porém é na fé e na religiosidade das pessoas que se encontra seu ponto mais proeminente. É o elo que nos conecta a Olorun (Deus). É o Orixá mais importante da Umbanda e por isso o batismo na Umbanda é a obrigação a este Orixá.',
+  carac:'Temperamento ao mesmo tempo calmo e dócil, porém determinado. Alheio a qualquer tipo de violência, briga ou disputa. Extremamente afeito à ordem, à limpeza e à pureza. São conselheiros por natureza, perfeccionistas, carinhosos, ligados à família, excelentes pais ou mães. Bondosos, altruístas, liberais. Líderes naturais. Em desequilíbrio: invejosos, excessivamente vaidosos, autoritários, confusos e temperamentais.',
+  lenda:'Olorun criou Obatalá e lhe deu a tarefa de criar o mundo. Mas Obatalá bebeu muito vinho de palma e adormeceu. Então seu irmão Odudua roubou a sacola mágica e criou o mundo antes dele. Obatalá foi castigado com a proibição de usar dendê e bebidas alcoólicas. Como consolação, recebeu uma argila para modelar os humanos. Por isso os deformados e os albinos são considerados filhos especiais de Oxalá.'
+},
+{
+  n:'Oxum',
+  s:'Ora Iêiêô · Aiêiêô',
+  cor:'#B45309',
+  sig:'Salve a mãe do sorriso gentil',
+  sinc:'Nossa Senhora da Imaculada Conceição, N. S. Aparecida',
+  data:'08 de dezembro (NS Conceição) · 12 de outubro (NS Aparecida)',
+  elem:'Água',
+  chacra:'Umbilical',
+  num:'5',
+  dia:'Sábado',
+  cor_guia:'Azul escuro, azul com contas douradas ou amarela',
+  cor_vela:'Azul escura, amarela ou rosa',
+  pedra:'Topázio amarelo ou azul',
+  metal:'Ouro',
+  astro:'Lua (quarto crescente)',
+  nota:'Si',
+  area:'Gestação, amor, fertilidade, criatividade, novos projetos, dinheiro e riqueza, diplomacia',
+  bebida:'Água mineral ou champanhe branco',
+  amala:'Quindim, moqueca com peixes de água doce, vatapá, xinxim, pratos com galinha, ovo e pirão',
+  frutas:'Pêssego amarelo, melão amarelo, damasco, ponkan, banana ouro, laranja lima, nêspera, maçã e nectarina',
+  flores:'Lírios, palmas brancas ou amarelas, rosas amarelas ou brancas',
+  ervas:'Oriri, jasmim, vitória-régia, arnica montana, camomila, erva de Santa Maria, aguapé, mãe-boa, calêndula, ipê-amarelo, erva cidreira, menta, brilhantina, colônia, chuva de ouro',
+  local:'Cachoeiras, lagos e rios calmos e limpos',
+  animais:'Abelha, galinha e pomba',
+  instrum:'Abebé (leque) e espelho',
+  desc:'A mais bela, sensual e pacífica de todos os orixás. A rainha de todo o ouro do mundo. Filha de Oxalá e Iemanjá, dona das águas doces, dos lagos, das cachoeiras e dos rios. Iemanjá gera, Oxum mantém e desenvolve. É a gestação, a fecundidade e a fertilidade. A palavra que melhor descreve este orixá é amor. Carrega o título de Ialodê, a mulher mais importante da cidade. Invocamos Oxum para alcançar fertilidade, sorte no amor, na gestação, para fecundar novos projetos, para obter riqueza e para a diplomacia.',
+  carac:'Amam espelhos, joias caras, roupas bonitas e da moda. Vaidosos, elegantes e sensuais de forma natural. Calmos, tranquilos e emotivos, com facilidade para o choro. A intuição é o ponto forte. Boas mães, boas cozinheiras e excelentes companheiras. Em desequilíbrio: desconfiados, interesseiros, hipócritas, indecisos e ciumentos.',
+  lenda:'Houve um tempo em que os orixás masculinos se reuniam para discutir a vida dos mortais sem deixar as deusas participarem. Aborrecida com isso, Oxum fez com que as mulheres ficassem estéreis e tudo deu errado na terra. Os orixás foram consultar Olorum, que explicou que sem Oxum nada poderia dar certo. Os orixás então convidaram Oxum para participar das reuniões, as mulheres voltaram a ser fecundas e todos os projetos tiveram bom resultado.'
+},
+{
+  n:'Ogum',
+  s:'Ogunhê · Patacori',
+  cor:'#DC2626',
+  sig:'Salve Ogum · Salve aquele que tem a cabeça coroada',
+  sinc:'São Jorge ou Santo Antônio',
+  data:'23 de abril (São Jorge) · 13 de junho (Santo Antônio)',
+  elem:'Fogo',
+  chacra:'Umbilical',
+  num:'2 (alguns cultos: 7)',
+  dia:'Terça-feira',
+  cor_guia:'Vermelha',
+  cor_vela:'Vermelha ou vermelha e branca',
+  pedra:'Granada, rubi, hematita e sárdio; lápis-lazúli ou topázio azul',
+  metal:'Ferro (Aço)',
+  astro:'Marte e lua cheia',
+  nota:'Fá',
+  area:'Caminhos, guerras, demandas e tecnologia',
+  bebida:'Cerveja branca',
+  amala:'Feijoada, inhame, cará, feijão mulato ou fradinho, amendoim',
+  frutas:'Manga espada, banana, ameixa, maçã, uva rosé, laranja',
+  flores:'Cravo vermelho, crista de galo, palmas vermelhas',
+  ervas:'Peregum verde, espada de São Jorge, Lança de São Jorge, Coroa de São Jorge, folhas de romã, losna, alcachofra, jurubeba, abre-caminho, carqueja, parietária, aroeira rosa, folha de manga espada',
+  local:'Estradas, caminhos e estradas de ferro. O meio da encruzilhada pertence à Ogum.',
+  animais:'Galo vermelho, cabrito malhado e cachorro',
+  instrum:'Espada, faca, lança, escudo',
+  desc:'O nome Ogum significa "Senhor da Guerra" ou "Guerreiro". Ogum foi o primeiro Orixá a descer do Orun para o Aiyê. É considerado o patrono da tecnologia e o responsável por todo o conhecimento prático existente. Filho de Iemanjá, irmão mais velho de Exu e Oxóssi. Na Umbanda, é o protetor maior, sem o qual não há segurança nas giras. Recorremos a Ogum para proteção de qualquer tipo de mal, nas brigas e conflitos, para o desenvolvimento de empresas e para que a lei se cumpra.',
+  carac:'Trabalhadores, impetuosos, autoritários, desconfiados e um pouco egoístas. Coerentes e eloquentes, defendem com paixão seus pontos de vista. Gostam de festas e de estar entre amigos. São batalhadores e líderes natos. Sua maior qualidade: serão sempre vitoriosos. Seu maior defeito: o gênio difícil e impulsivo. Adaptam-se a qualquer situação e odeiam injustiças.',
+  lenda:'Ogum lutava sem cessar contra os reinos vizinhos, trazendo rico espólio a seu pai Odùduá, rei de Ifé. Certa vez, ao retornar a Irê após longa ausência, não reconheceu o lugar. Num dia de silêncio ritual, Ogum encoleriou-se com o silêncio das pessoas, quebrou as jarras de vinho e cortou cabeças. Quando seu filho chegou e lhe ofereceu seus pratos prediletos, Ogum, arrependido, disse que já vivera bastante e que viera o tempo de repousar. Baixou então sua espada e desapareceu sob a terra, tornando-se um Orixá.'
+},
+{
+  n:'Oxóssi',
+  s:'Okê Arô',
+  cor:'#15803D',
+  sig:'Salve aquele que está no ponto mais alto',
+  sinc:'São Sebastião',
+  data:'20 de janeiro',
+  elem:'Terra',
+  chacra:'Esplênico',
+  num:'6',
+  dia:'Quinta-feira',
+  cor_guia:'Verde',
+  cor_vela:'Verde',
+  pedra:'Esmeralda, amazonita, calcita verde, quartzo verde',
+  metal:'Cobre e latão',
+  astro:'Vênus e lua crescente',
+  nota:'Ré',
+  area:'Subsistência, trabalho, demandas, determinação, fartura',
+  bebida:'Cerveja branca, vinho tinto, água de coco, caldo de cana',
+  amala:'Milho cozido, mandioca assada, frutas',
+  frutas:'Abacate, ameixa, coco, milho verde, laranja, limão, caju, acerola',
+  flores:'Flores do campo, palmas',
+  ervas:'Erva-doce, eucalipto, folhas de jurema, guiné caboclo, mangueira, saião, samambaia, peregum verde, sabugueiro, malva cheirosa, malvarisco, cipó caboclo, dracena, taioba, aroeira rosa',
+  local:'Matas (preferencialmente as virgens ou fechadas)',
+  animais:'Porco do mato e aves malhadas',
+  instrum:'Ofá (arco e flecha)',
+  desc:'O nome Oxóssi significa "Caçador Noturno" ou "Aquele que Caça à Noite". Filho de Oxalá e Iemanjá, irmão de Exu e de Ogum. Conhecido como o caçador de uma flecha só, Oxóssi demonstra através dessas alcunhas seu poder de alcançar qualquer objetivo por mais impossível que pareça. Vive nas matas fechadas, conhece toda a fauna e a flora. Na Umbanda, é o grande regente da Linha dos Caboclos. Recorremos a Oxóssi para obter emprego, fartura e prosperidade.',
+  carac:'Joviais, rápidos e espertos, tanto mental quanto fisicamente. Dotados de extrema atenção, concentração e determinação. Extremamente independentes e pouco apegados às pessoas. Curiosos e donos de um poder de observação impressionante. Devotados à casa e à família. No cotidiano são amáveis, educados, calmos e muito queridos. São francos e rancorosos. Místicos e intuitivos.',
+  lenda:'Certa vez, no reino de Ifá, surgiu um pássaro enorme que não deixava o povo fazer as festas da colheita. O rei convocou todos os arqueiros, que usaram todas as suas flechas sem conseguir espantar o animal, sendo executados. O último a comparecer tinha somente uma flecha. Sua mãe consultou Ifá e soube que o filho devia fazer uma oferenda antes de tentar a sorte. O rapaz obedeceu e, com sua única flecha, matou o monstro. Foi muito aclamado pelo povo e passou a se chamar Oxóssi, o grande caçador.'
+},
+{
+  n:'Xangô',
+  s:'Kaô Kabecilê',
+  cor:'#92400E',
+  sig:'Venham ver e admirar o rei da casa',
+  sinc:'São Jerônimo, São José, São Pedro, Moisés, São João Batista, Santo Antônio',
+  data:'30 de setembro (São Jerônimo); datas festivas juninas',
+  elem:'Fogo',
+  chacra:'Cardíaco',
+  num:'12',
+  dia:'Quarta-feira',
+  cor_guia:'Marrom (branco e vermelho em algumas casas)',
+  cor_vela:'Marrom (vermelha em algumas casas)',
+  pedra:'Meteorito, pirita, jaspe, olho de tigre, granada',
+  metal:'Estanho',
+  astro:'Júpiter',
+  nota:'Sol',
+  area:'Justiça, equilíbrio, administração, negócio, aprimoramento',
+  bebida:'Cerveja preta',
+  amala:'Rabada, acarajé, quiabo',
+  frutas:'Marmelo, caqui, fruta-do-conde, melancia, morango, manga e mamão',
+  flores:'Lírio, cravos brancos e vermelhos',
+  ervas:'Erva de São João, erva tostão, louro, caruru, alevante, comigo-ninguém-pode, folhas de mangueira, folhas de marmeleira, folhas de seringueira, folhas de café, aperta ruão',
+  local:'Pedreiras, pedras perto do mar',
+  animais:'Leão, urso, porco do mato e aves malhadas',
+  instrum:'Oxê (machado de duas lâminas) e balança',
+  desc:'Orixá do raio, do trovão, do fogo, da justiça, da administração e da política. Terceiro rei de Oió, sábio juiz e administrador, foi divinizado após sua morte. Xangô castiga os mentirosos e malfeitores com seu raio. É certamente, ao lado de Iemanjá, um dos orixás mais conhecidos e cultuados no Brasil. Invocamos Xangô nos casos de demandas judiciais, para a prosperidade, para adquirir conhecimento especializado, para o equilíbrio material, emocional ou espiritual.',
+  carac:'Tipo físico forte, ombros largos e estrutura óssea extremamente densa. Cheios de energia e com enorme autoestima. Honestos, sinceros, não admitem mentiras e traições. Teimosos e vaidosos. São líderes natos e adoram dominar e influenciar as pessoas. Equilibrados: obstinados, inteligentes, ponderados e altivos. Em desequilíbrio: mesquinhos, vaidosos, inócuos e corruptos. Eloquentes e sociáveis, sabem fazer amizades duradouras.',
+  lenda:'Xangô era rei de Oyó, o mais temido e respeitado de todos os reis. Pediu ao babalaô uma fórmula para aumentar seus poderes; este lhe entregou uma caixinha de bronze, recomendando que só fosse aberta em caso de extrema necessidade de defesa. Xangô, curioso, contou a Iansã e ambos abriram a caixa antes do tempo. Imediatamente começou a relampejar e trovejar; os raios destruíram o palácio e a cidade. Não suportando tanta tristeza, Xangô afundou terra adentro, retornando ao Orun.'
+},
+{
+  n:'Ibeji',
+  s:'Oni Erê · Oni Beijada',
+  cor:'#EC4899',
+  sig:'Hoje tem brincadeira · Salve os gêmeos',
+  sinc:'São Cosme e São Damião',
+  data:'27 de setembro',
+  elem:'Ar',
+  chacra:'Todos, especialmente o laríngeo',
+  num:'2',
+  dia:'Domingo',
+  cor_guia:'Rosa ou azul claro e rosa',
+  cor_vela:'Rosa ou azul claro e rosa',
+  pedra:'Quartzo rosa',
+  metal:'Estanho',
+  astro:'Mercúrio',
+  nota:'Dó',
+  area:'Crianças, saúde, alegria, tudo o que se inicia',
+  bebida:'Suco de frutas, água com açúcar, refrigerantes (jamais Coca-Cola)',
+  amala:'Doces de qualquer natureza',
+  frutas:'Goiaba, groselha, jabuticaba, amora, pitanga, morango',
+  flores:'Crisântemos, margaridas, rosa miudinha, flores miúdas',
+  ervas:'Manjericão, anis, alecrim, jasmim, rosa, chá, trevo, verbena, folhas de groselha, folhas de amoreira, capim limão, folhas de morango',
+  local:'Jardins, praias, parques e campos limpos',
+  animais:'Macaco',
+  instrum:'Brinquedos de qualquer natureza',
+  desc:'O único orixá permanentemente duplo. Ibeji, formado por duas crianças gêmeas, governa tudo referente às crianças até sua adolescência, e tudo que se inicia. Na mitologia africana são filhos de Xangô e Iansã. Na Umbanda sincretizamos Ibeji com São Cosme e São Damião. É no açúcar que reside o axé de Ibeji. Invocamos Ibeji para cuidar de crianças em todas as situações, para a união de casais, em casos de acidentes domésticos, nos problemas de saúde, mas principalmente para trazer alegria, energia e paz no lar.',
+  carac:'Naturalmente com comportamento infantil, jovial e inconsequente. São brincalhões, espertos, ativos, elétricos. Emocionalmente frágeis e muito dependentes nos relacionamentos amorosos, mas com teimosia e obstinação intensas. Magoam-se com facilidade, mas apresentam grande facilidade em deixar para trás as tristezas. Carregam por muito tempo o rosto de crianças.',
+  lenda:'Os Ibejis viviam para se divertir com seus pequenos tambores mágicos. Iku, a morte, começou a devorar todos os humanos. Sacerdotes e curandeiros foram vencidos por Iku. Os Ibejis então armaram um plano: um ia na frente tocando o tambor enquanto o outro seguia escondido. Iku ficou maravilhada e não quis que o músico morresse. Os irmãos foram se revezando sem Iku perceber. Exausta, Iku implorou uma pausa. Os gêmeos propuseram um pacto: a música cessaria se Iku tirasse todas as armadilhas. Iku rendeu-se, e assim os Ibejis salvaram os homens.'
+},
+{
+  n:'Obaluaê/Omulu',
+  s:'Atotô',
+  cor:'#334155',
+  sig:'Silêncio e respeito',
+  sinc:'São Roque · São Lázaro',
+  data:'16 de agosto · 17 de dezembro',
+  elem:'Terra',
+  chacra:'Básico',
+  num:'3',
+  dia:'Segunda-feira (almas)',
+  cor_guia:'Preto e branco (algumas casas: lilás ou violeta)',
+  cor_vela:'Preto e branco (algumas casas: lilás ou violeta)',
+  pedra:'Obsidiana, ônix',
+  metal:'Chumbo',
+  astro:'Saturno',
+  nota:'—',
+  area:'Vida, morte, cura e transformação',
+  bebida:'Água mineral, vinho tinto, café',
+  amala:'Feijão preto, pipoca, amendoim torrado e pilado (abadô)',
+  frutas:'Abacaxi, laranja, maracujá, uva preta',
+  flores:'Crisântemo branco, monsenhor branco, dálias escuras',
+  ervas:'Eucalipto, guiné caboclo, folha de bananeira, erva de bicho, velame, agoniada, manjericão roxo, carobinha do campo, cordão de frade, alfazema, cinco chagas, barba de velho',
+  local:'Cemitérios, grutas e praia',
+  animais:'Cachorro, caranguejo e galinha d\'angola',
+  instrum:'Xaxará (cetro de palha da costa adornado com búzios)',
+  desc:'Também conhecido por Omulu, Xapanã e Babalu Ayê. Obaluaê significa "Senhor Dono da Terra" e Omulu quer dizer "Filho do Senhor". Filho de Oxalá com Nanã, foi adotado por Iemanjá. A este orixá é atribuído o dom da vida e da morte, da cura e do alcance de toda sorte de bênçãos. Seu poder maior é a transformação. Usa um capacete e roupa de palha da costa que não deixa visível seu corpo. É o padroeiro dos pobres, humildes e doentes. Invocamos Obaluaê em todos os momentos, principalmente em casos de doenças.',
+  carac:'Cautelosos e discretos, sempre presentes mas pouco notados. Ambiciosos e combativos, gostam de planos a longo prazo e quase sempre alcançam seus objetivos. Perseverantes, têm muita dificuldade para aceitar mudanças. Realistas, lógicos, humildes e conservadores. Na vida profissional, exigentes e meticulosos. Normalmente irônicos, secos e diretos. Não falam pelas costas e odeiam fofocas. Adoram fazer caridade e aliviar o sofrimento dos outros.',
+  lenda:'Obaluaê crescia em poder com o passar do tempo e Oxalá teve medo de que ele ultrapassasse seu próprio poder. Colocou então sobre ele todas as dores e o sofrimento dos humanos. Vendo seu corpo coberto de doenças e pústulas, Obaluaê perguntou ao pai o porquê. Oxalá respondeu: "Vendo o crescimento de seu poder, tive medo que se tornasse um tirano, então coloquei o sofrimento do mundo sobre você para que jamais se esqueça de ajudar os homens que são fracos e tanto precisam de nossa ajuda."'
+},
+{
+  n:'Nanã',
+  s:'Saluba Nanã',
+  cor:'#7C3AED',
+  sig:'Nos refugiamos com Nanã',
+  sinc:'Sant\'Ana',
+  data:'26 de julho',
+  elem:'Água (em contato com terra)',
+  chacra:'Frontal',
+  num:'13',
+  dia:'Segunda-feira (junto com as almas)',
+  cor_guia:'Lilás ou violeta',
+  cor_vela:'Lilás ou violeta',
+  pedra:'Ametista, tanzanita',
+  metal:'Níquel ou latão',
+  astro:'Lua (quarto minguante)',
+  nota:'Si',
+  area:'A vida e a morte, maternidade, amadurecimento, sabedoria. Senhora dos espíritos.',
+  bebida:'Champanha rosé, vinho licoroso, água de coco, água de chuva',
+  amala:'Feijão preto com purê de batata doce, pipoca, farofa de dendê',
+  frutas:'Laranja lima, figo, ameixa, uva escura, fruta do conde, coco seco, banana da terra, melão de São Caetano, abacaxi e jaca',
+  flores:'Rosa rubra, crisântemo roxo e violeta',
+  ervas:'Manacá, folhas de berinjela, folha da fortuna, avenca, alfavaca, viuvinha, cana do brejo, manjericão roxo, canela de velho, quaresmeira',
+  local:'Pântanos, lamaçais, beira de rio e cemitérios',
+  animais:'Rã, galinha branca, pata branca',
+  instrum:'Ibiri (cetro feito de cerne de dendezeiro curvado e adornado de búzios)',
+  desc:'Certamente a mais velha Orixá cultuada no panteão africano. O nome Nanã significa "mãe". É o princípio, o meio e o fim. O nascimento, a vida e a morte. Mãe dos orixás Iroko, Obaluaê e Oxumarê. É a chuva, a tempestade e a garoa. Dona dos pântanos. É Nanã quem ampara o espírito do morto enquanto seu corpo é enterrado e quem rege a reencarnação. Recorremos à Nanã para o recebimento de entes queridos falecidos, contra o perigo de morte, para aprimorar nossas virtudes e no encerramento e início de ciclos.',
+  carac:'Normalmente calmos e até um pouco lentos. Gostam de crianças e sempre aparentam mais idade do que possuem. Pessoas de ímpeto, boas, decididas, simpáticas, mas que remoem as coisas e guardam rancor. Conservadores e nostálgicos, sempre desejando que momentos do passado retornem. São excelentes ouvintes e têm grande capacidade de compreensão do ser humano. Dedicam-se muito à vida profissional. São caridosos e frequentemente envolvidos em campanhas sociais.',
+  lenda:'Nanã era senhora dos búzios e dos eguns. Oxalá, desejando os segredos que ela guardava, seduziu-a e com ela teve filhos. Mas ao longo do tempo, Oxalá foi tomando os segredos dos eguns de Nanã, enfraquecendo-a. Quando Nanã percebeu, decidiu que todo ser que usa metal — arma ou ferramenta — jamais poderia ser cultuado em seus rituais. Por isso, nos cultos de Nanã e Obaluaê não se usam utensílios metálicos, lembrando a antiguidade destas divindades, provavelmente anteriores à idade do ferro.'
+},
+{
+  n:'Iemanjá',
+  s:'Odô Iá · Odô Fe Iabá · Odoyá · Odociaba',
+  cor:'#0EA5E9',
+  sig:'Salve a mãe · Salve a mãe das águas',
+  sinc:'Nossa Senhora da Glória, Nossa Senhora dos Navegantes',
+  data:'02 de fevereiro (NS Navegantes) · 08 de dezembro (NS da Conceição em alguns estados)',
+  elem:'Água',
+  chacra:'Frontal',
+  num:'4',
+  dia:'Sábado',
+  cor_guia:'Azul claro, azul e branco',
+  cor_vela:'Azul clara',
+  pedra:'Pérola, água-marinha, lápis-lazúli, calcedônia e turquesa',
+  metal:'Prata',
+  astro:'Lua cheia',
+  nota:'Si',
+  area:'Família, relações pessoais, cura (cabeça), vida, fecundidade e prosperidade',
+  bebida:'Água mineral ou champanhe branco',
+  amala:'Moqueca de peixe do mar, camarão, canjica doce, arroz com mel, manjar',
+  frutas:'Marmelo, graviola, uvas brancas, melancia, nêspera, pera',
+  flores:'Rosas brancas, copo de leite, camélia branca ou palmas brancas',
+  ervas:'Panacéia, angélica, picão-da-praia, manacá, cânfora, chapéu de couro, lágrima de Nossa Senhora, erva de Santa Luzia, lavanda, mastruço, camélia branca, rosa branca',
+  local:'Praias ou em alto mar; também aceita perto de grandes rios',
+  animais:'Peixe, cabra branca, ovelha branca, galinha branca',
+  instrum:'Abebé, leque de metal prateado na figura de um peixe',
+  desc:'Deusa de Egbé, nação Iorubá, onde corre o rio Yemoja. Seu nome significa "mãe cujos filhos são peixes". Filha de Olokum, o senhor dos mares. De seu ventre saíram os orixás. Da mesma forma que Oxalá é o princípio gerador masculino, Iemanjá é o princípio gerador feminino. É Iemanjá quem ampara a cabeça dos bebês ao nascerem. Invocamos Iemanjá para curar problemas na cabeça, para a bênção e proteção da família, dos amigos e das relações entre irmãos de fé.',
+  carac:'Empreendedores, ativos. São calmos, dóceis e criativos. Formais e cheios de dignidade. Voluntariosos, assumem os problemas dos outros como se fossem seus. Excepcionais conselheiros. Apesar da aparência tranquila, podem se transformar quando o assunto for família. São caseiros, gostam de rotina e normalmente são bons com os serviços domésticos. Em equilíbrio: nobres, criativos, corajosos e constantes. Desequilibrados: rudes, insensíveis, medrosos e orgulhosos.',
+  lenda:'Iemanjá foi casada com Okere. Como o marido a maltratava, ela resolveu fugir para a casa do pai Olokum. Okere mandou um exército atrás dela, mas quando estava sendo alcançada, Iemanjá se transformou num rio para correr mais depressa. Mais adiante, Okere se transformou numa montanha, barrando sua passagem. Então Iemanjá pediu ajuda a Xangô; o Orixá do fogo juntou muitas nuvens e, com um raio, provocou uma grande chuva que encheu o rio; com outro raio, partiu a montanha em duas e Iemanjá pôde correr para o mar.'
+},
+{
+  n:'Iansã',
+  s:'Eparrei Oyá · Eparrei Mesan Orun',
+  cor:'#CA8A04',
+  sig:'Salve Oyá (com admiração) · Salve a mãe dos nove céus',
+  sinc:'Santa Bárbara',
+  data:'04 de dezembro',
+  elem:'Ar em movimento e fogo',
+  chacra:'Plexo solar, frontal e cardíaco',
+  num:'9',
+  dia:'Quarta-feira',
+  cor_guia:'Amarela (algumas casas: laranja ou vermelha)',
+  cor_vela:'Amarela (algumas casas: laranja ou vermelha)',
+  pedra:'Coral, rubi, granada',
+  metal:'Cobre',
+  astro:'Lua nova',
+  nota:'Si',
+  area:'Proteção, demandas, quebra de magia negativa, abençoar mulheres independentes, encaminhamento de espíritos',
+  bebida:'Champanha branca',
+  amala:'Acarajé, vatapá',
+  frutas:'Maçã vermelha, uva rosa, tangerina, cereja, pitanga, laranja-bahia, morango, manga rosa',
+  flores:'Palmas e rosas vermelhas e amarelas',
+  ervas:'Espada de Santa Bárbara, folhas de pitangueira, cordão de frade, gerânio, capim santo, espinheira santa, rubi, carobinha, cipó cruz, louro',
+  local:'Bambuzal e lugares onde se venta (alto de morros)',
+  animais:'Búfalo (força) e borboleta (liberdade)',
+  instrum:'Leque, espada e eruexim (espanta-moscas feito de rabo de cavalo ou boi)',
+  desc:'Na África é conhecida apenas como Oyá, nome do rio Níger. O nome Iansã vem de "Oyá Mesan Orun" (Oyá dos Nove Céus), pois recebeu de Obaluaê o poder de encaminhar os espíritos dos mortos para seu orun adequado. É a orixá dos ventos, da tempestade e do raio. Guerreira e destemida. Iansã simboliza a força e o poder feminino. A única orixá que enfrenta a morte sem recuar. Invocamos Iansã para proteção, para trazer força e disposição, contra todo tipo de demanda.',
+  carac:'Tendem a ser magros e vistosos. Extremamente temperamentais, inconstantes e sentimentais. Arrependem-se com a mesma facilidade que perdoam. Alegres, guerreiros e cheios de vitalidade. São corajosos, não têm medo de nada. Não gostam de nada rotineiro ou repetitivo. Os filhos de Iansã são fiéis e companheiros se estiverem felizes no relacionamento. Suas palavras sempre valem mais e gostam de impor suas vontades. Odeiam injustiças e tendem a proteger os fracos.',
+  lenda:'Ogum foi caçar na floresta e viu um búfalo que parou em cima de um formigueiro, baixou a cabeça e despiu sua pele, transformando-se numa linda mulher: era Iansã. Ogum apoderou-se da pele e passou a cortejá-la. Em troca de seu segredo, Iansã foi obrigada a se casar com ele, estabelecendo a regra de que Ogum jamais comentasse o assunto com ninguém. Porém, as outras esposas embriagaram Ogum e ele revelou o mistério. Iansã encontrou sua pele, assumiu a forma de búfalo e partiu. Deixou seus chifres com os filhos: em caso de perigo deveriam bater as pontas e ela os socorreria imediatamente.'
+},
+{
+  n:'Obá',
+  s:'Obá Xirê',
+  cor:'#BE123C',
+  sig:'Eu saúdo o seu conhecimento',
+  sinc:'Santa Joana D\'Arc',
+  data:'30 de maio',
+  elem:'Água (corredeiras)',
+  chacra:'—',
+  num:'—',
+  dia:'—',
+  cor_guia:'Vermelho e branco',
+  cor_vela:'Vermelha',
+  pedra:'—',
+  metal:'—',
+  astro:'—',
+  nota:'—',
+  area:'Causas impossíveis, justiça para os injustiçados, proteção de mulheres traídas, objetos perdidos',
+  bebida:'—',
+  amala:'—',
+  frutas:'—',
+  flores:'—',
+  ervas:'—',
+  local:'Corredeiras, rios revoltos',
+  animais:'—',
+  instrum:'Espada e escudo',
+  desc:'Obá possui um caráter apaixonado e corajoso. Não teme nada nem ninguém. Considerada senhora da guerra, uma amazona destemida e sábia feiticeira. Obá é a esposa menos desejada de Xangô, por quem é completamente apaixonada. Ajuda a encontrar objetos perdidos e toma sob sua proteção todas as mulheres que possuem casamentos infelizes ou que foram traídas. Mentiras atraem a sua ira. Por sua tenacidade, é muito solicitada em causas impossíveis. As características de Obá foram absorvidas por Nanã e Iansã na maioria das doutrinas de Umbanda.',
+  carac:'Prática, poderosa, leal e sempre muito correta. Introspectiva, gosta de solidão, não é sociável e fala pouco. Generosa, mas não aceita pedido de desculpas. Representa as emoções reprimidas e insatisfeitas, o sofrimento que dá a sensibilidade para sintonizar-se com as vítimas da injustiça. Não possui vaidade, não liga para a própria aparência. Sua força pode ser maior que a dos outros Orixás masculinos.',
+  lenda:'Obá era casada com Xangô mas jamais foi sua favorita. Com ciúmes de Oxum, a preferida do rei, aceitou a sugestão de Oxum de preparar um ensopado usando a própria orelha para que Xangô caísse a seus pés. Mas Oxum avisou Xangô do feitiço. Irado, Xangô humilhou e desprezou Obá, que além de não conseguir seu intento ainda teve que amargar para sempre a falta do membro mutilado. O fenômeno da pororoca — o encontro do rio Obá com o rio Oxum — representa a rivalidade eterna entre as duas iabás.'
+}
+];
 var GIRAS_D=[{num:'1ª',n:"Povo d'Água — Marinheiros",tipo:'Descarrego',desc:"Entidades muito elevadas. Chegam girando, limpando com águas e vento. Não fazem consultas."},{num:'2ª',n:'Pombagira',tipo:'Consultas',desc:'Consultas e trabalhos de magia — vida sentimental, emprego, finanças.'},{num:'3ª',n:'Xangô — Ibejada',tipo:'Descarrego + Consultas',desc:'Xangô: juízes espirituais, trabalham no carma. Ibejada: para casos de doença, família e gravidez.'},{num:'4ª',n:'Boiadeiros',tipo:'Consultas',desc:'Evolução material e espiritual. Magias com palheiro, cachaça, cerveja e velas.'},{num:'5ª',n:'Ciganos',tipo:'Consultas',desc:'Sorte, dinheiro, prosperidade e amor. Cartas, cristais, incensos, fumo e flores.'},{num:'6ª',n:'Exu',tipo:'Consultas',desc:'Defesa dos médiuns e do terreiro. Velas pretas e vermelhas, charutos, bebidas fortes.'},{num:'7ª',n:'Obaluaê/Omulu — Baianos',tipo:'Descarrego + Consultas',desc:'Omulu: energia da terra/água para saúde. Baianos: atendimentos de consulta.'},{num:'8ª',n:'Oxóssi',tipo:'Descarrego + Consultas',desc:'Charutos para limpeza, Curiado. Ajudam na vida material.'},{num:'9ª',n:'Ogum — Malandros',tipo:'Descarrego',desc:'Braço forte de Oxalá. Não dão consultas. Charuto, cerveja, espada ou ervas.'},{num:'10ª',n:'Pretos Velhos',tipo:'Consultas',desc:'Psicólogos dos aflitos. Cachimbo para limpeza, rezas, patuás.'}];
 var LINHAS_D=[{n:"Linha das Águas",d:"Caboclas de Iemanjá, Oxum, Obá, Iansã e Nanã",c:'#0EA5E9'},{n:"Linha de Ibejada",d:"Erês — Crianças de Ibeji",c:'#EC4899'},{n:"Linha das Almas",d:"Obaluaê/Omulu, Pretos Velhos",c:'#475569'},{n:"Linha de Ogum",d:"Caboclos ou Falangeiros de Ogum",c:'#DC2626'},{n:"Linha de Oxossi",d:"Caboclos de Oxóssi",c:'#15803D'},{n:"Linha de Xangô",d:"Caboclos de Xangô",c:'#92400E'},{n:"Linha de Ciganos",d:"Espíritos ciganos",c:'#D97706'},{n:"Linha do Povo do Oriente",d:"Espíritos elevados de cura",c:'#EA580C'},{n:"Linha de Boiadeiros",d:"Espíritos da boiada e do campo",c:'#78350F'},{n:"Linha de Marinheiros",d:"Povo d'água",c:'#1D4ED8'},{n:"Linha de Malandros",d:"Coordenada por Zé Pelintra",c:'#9F1239'},{n:"Linha da Esquerda",d:"Exu, Pomba-Gira e Mirim",c:'#334155'},{n:"Linha de Baianos",d:"Baianos e suas correntes",c:'#B45309'}];
 var SETE_D=[{n:'Oriente',o:'Oxalá',v:'FÉ',c:'#EA580C'},{n:'Ogum',o:'Ogum',v:'LEI · ORDENAÇÃO',c:'#DC2626'},{n:'Xangô',o:'Xangô',v:'JUSTIÇA · JULGAMENTO · RAZÃO',c:'#92400E'},{n:'Oxóssi',o:'Oxóssi',v:'DOUTRINA · CONHECIMENTO',c:'#15803D'},{n:"Povo d'Água",o:'Iemanjá, Oxum, Iansã, Nanã',v:'AMOR · GERAÇÃO',c:'#0EA5E9'},{n:'Almas',o:'Obaluaê/Omulú',v:'EVOLUÇÃO · HUMILDADE',c:'#7C3AED'},{n:'Ibejada/Erês',o:'Ibeji',v:'INOCÊNCIA · ALEGRIA · SAÚDE',c:'#EC4899'}];
@@ -1997,6 +2328,15 @@ function toggleGroup(h){
   var c=h.nextElementSibling;if(c&&c.classList.contains('nav-children'))c.classList.toggle('open');
 }
 
+// ===== ORIXÁ TABS =====
+function oriTab(uid,tab,btn){
+  document.querySelectorAll('#tabs-'+uid+' .tab').forEach(function(b){b.classList.remove('active');});
+  if(btn)btn.classList.add('active');
+  ['desc','carac','corr','lenda'].forEach(function(t){
+    var el=document.getElementById(uid+'-'+t);
+    if(el)el.style.display=(t===tab)?'block':'none';
+  });
+}
 // ===== BUILD =====
 function buildAll(){
   if(built)return;built=true;
@@ -2004,7 +2344,66 @@ function buildAll(){
   if(og)ORIXAS.forEach(function(o){
     var d=document.createElement('div');d.className='oc';
     d.innerHTML='<span class="odot" style="background:'+o.cor+'"></span><div class="on">'+o.n+'</div><div class="os2">'+o.s+'</div>';
-    d.onclick=function(){var det=document.getElementById('odet');det.innerHTML='<div class="rc"><div class="rt">'+o.n+'</div><div class="rm">Saudação · Significado</div><div style="margin-bottom:8px;"><span class="odot" style="background:'+o.cor+';display:inline-block;"></span><strong style="color:var(--azul);font-size:14px;margin-left:5px;">'+o.s+'</strong></div><div class="rb">'+o.sig+'</div></div>';det.style.display='block';};
+    d.onclick=function(){
+      var det=document.getElementById('odet');
+      var uid='od'+o.n.replace(/[^a-z]/gi,'');
+      function row(label,val){return val&&val!=='—'?'<div style="display:flex;gap:8px;padding:5px 0;border-bottom:1px solid var(--borda);font-size:12.5px;"><span style="min-width:130px;color:var(--muted);font-weight:600;flex-shrink:0;">'+label+'</span><span style="color:var(--texto);">'+val+'</span></div>':'';}
+      det.innerHTML=
+        '<div class="rc" style="padding:0;overflow:hidden;">'
+        +'<div style="background:'+o.cor+';padding:16px 20px;display:flex;align-items:center;gap:12px;">'
+        +'<span class="odot" style="background:rgba(255,255,255,0.25);width:16px;height:16px;"></span>'
+        +'<div>'
+        +'<div style="font-family:\'Cinzel\',serif;font-size:18px;color:#fff;font-weight:700;">'+o.n+'</div>'
+        +'<div style="font-size:12px;color:rgba(255,255,255,0.85);margin-top:2px;">'+o.s+' — <em>'+o.sig+'</em></div>'
+        +'</div></div>'
+        +'<div style="padding:16px 20px;">'
+        +'<div class="tabs" style="margin-bottom:14px;" id="tabs-'+uid+'">'
+        +'<button class="tab active" onclick="oriTab(\''+uid+'\',\'desc\',this)">Descrição</button>'
+        +'<button class="tab" onclick="oriTab(\''+uid+'\',\'carac\',this)">Características</button>'
+        +'<button class="tab" onclick="oriTab(\''+uid+'\',\'corr\',this)">Correspondências</button>'
+        +'<button class="tab" onclick="oriTab(\''+uid+'\',\'lenda\',this)">Lenda</button>'
+        +'</div>'
+        +'<div id="'+uid+'-desc" class="otc" style="display:block;">'
+        +'<div class="rb" style="line-height:1.9;font-size:13.5px;">'+o.desc+'</div>'
+        +'<div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:6px;">'
+        +'<span class="badge badge-azul">'+o.elem+'</span>'
+        +'<span class="badge badge-ouro">'+o.dia+'</span>'
+        +'<span class="badge badge-azul">Nº '+o.num+'</span>'
+        +'<span class="badge badge-azul">'+o.astro+'</span>'
+        +'</div></div>'
+        +'<div id="'+uid+'-carac" class="otc" style="display:none;">'
+        +'<div class="rb" style="line-height:1.9;font-size:13.5px;">'+o.carac+'</div>'
+        +'</div>'
+        +'<div id="'+uid+'-corr" class="otc" style="display:none;">'
+        +row('Sincretismo',o.sinc)
+        +row('Data de culto',o.data)
+        +row('Área de atuação',o.area)
+        +row('Elemento',o.elem)
+        +row('Chacra',o.chacra)
+        +row('Dia da semana',o.dia)
+        +row('Número',o.num)
+        +row('Astro regente',o.astro)
+        +row('Nota musical',o.nota)
+        +row('Metal',o.metal)
+        +row('Pedra',o.pedra)
+        +row('Cor da guia',o.cor_guia)
+        +row('Cor da vela',o.cor_vela)
+        +row('Bebida',o.bebida)
+        +row('Amalá / Comidas',o.amala)
+        +row('Frutas',o.frutas)
+        +row('Flores',o.flores)
+        +row('Ervas',o.ervas)
+        +row('Local de oferta',o.local)
+        +row('Animais',o.animais)
+        +row('Instrumentos',o.instrum)
+        +'</div>'
+        +'<div id="'+uid+'-lenda" class="otc" style="display:none;">'
+        +'<div class="rb" style="line-height:1.9;font-size:13.5px;font-style:italic;border-left:3px solid '+o.cor+';padding-left:14px;">'+o.lenda+'</div>'
+        +'</div>'
+        +'</div></div>';
+      det.style.display='block';
+      det.scrollIntoView({behavior:'smooth',block:'nearest'});
+    };
     og.appendChild(d);
   });
   var gs=document.getElementById('gr-seq'),gf=document.getElementById('gr-fund');
